@@ -34,5 +34,6 @@ module.exports = {
         "no-multiple-empty-lines": [0, { "max": 100 }],
         //关闭禁止混用tab和空格
         "no-mixed-spaces-and-tabs": [0],
+        "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]
     }
 }

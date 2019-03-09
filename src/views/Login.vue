@@ -2,8 +2,8 @@
   <div class="lg-background">
     <div class="login-container">
       <div class="lg-header">
-        <img class="logo-login-min" src="@/assets/logo.png" >
-        <p class="lg-header-text">登陆</p>
+        <!-- <img class="logo-login-min" src="@/assets/logo.png" > -->
+        <p class="lg-header-text">登陆 · 壹书单</p>
       </div>
       <div class="lg-body">
         <Form ref="formInline" :model="formInline" :rules="ruleInline" >
@@ -12,7 +12,7 @@
             </Input>
           </FormItem>
           <FormItem prop="password">
-            <Input class="lg-input" type="password" v-model="formInline.password" placeholder="密码">
+            <Input class="lg-input" type="password" size="large" v-model="formInline.password" placeholder="密码">
             </Input>
           </FormItem>
           <FormItem>
@@ -22,7 +22,7 @@
       </div>
       <div class="lg-footer">
         <div>
-          <Button class="lg-button" type="primary" @click="handleSubmit('formInline')">注册</Button>
+          <Button class="lg-button lg-register" type="primary" @click="handleSubmit('formInline')">注册</Button>
         </div>
         <div class="lg-extra">
           <span class="lg-extra-title">
@@ -53,7 +53,7 @@
     background:#fff;
     width:pxTorem(360px);
     @include desktop {
-      min-height:500px
+      min-height:450px
     }
     margin:0 auto;
     // display:flex;
@@ -83,6 +83,10 @@
       }
     }
     .lg-footer{
+      .lg-register{
+        background:#fff;
+        color:#3194d0;
+      }
       .lg-extra{
         margin-top:20px;
         width:100%;

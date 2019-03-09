@@ -28,6 +28,11 @@
           <span class="lg-extra-title">
             第三方登录
           </span>
+          <div class="lg-extra-logo">
+            <Icon type="logo-android" size="38"/>
+            <Icon type="logo-android" size="38"/>
+            <Icon type="logo-android" size="38"/>
+          </div>
         </div>
       </div>
     </div>
@@ -86,6 +91,7 @@
         width: 100%;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         .lg-extra-title{
           display: flex;
           align-items: center;
@@ -100,8 +106,15 @@
             margin-right:10px;
           }
           &:after{
-            margin-left:10px; 
+            margin-left:10px;
           }
+        }
+        .lg-extra-logo{
+          width:pxTorem(250px);
+          display: flex;
+          justify-content: space-around;
+          height:pxTorem(60px);
+          align-items: center;
         }
       }
     }

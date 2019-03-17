@@ -1,6 +1,6 @@
 <template>
   <div class="shudan">
-    <img alt="Vue logok" src="../assets/logo.png">
+    <!-- <img alt="Vue logok" src="../assets/logo.png"> -->
     <Index class="ppp" msg='asdad'/>
   </div>
 </template>

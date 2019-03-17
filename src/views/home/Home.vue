@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Title />
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <p v-on:click="ages++">{{ ages }}</p>
     <p v-on:click="clicks">{{ ages }}</p>

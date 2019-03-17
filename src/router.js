@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Shudan from './views/Shudan.vue'
-import Login from './views/Login.vue'
+// import Login from './views/Login.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -31,7 +31,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: () => import('./views/Login.vue')
     }
   ]
 })

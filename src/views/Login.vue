@@ -22,7 +22,7 @@
       </div>
       <div class="lg-footer">
         <div>
-          <Button class="lg-button lg-register" type="primary" @click="handleSubmit('formInline')">注册</Button>
+          <Button class="lg-button lg-register" type="primary" @click="register('formInline')">注册</Button>
         </div>
         <div class="lg-extra">
           <span class="lg-extra-title">
@@ -154,6 +154,9 @@ export default {
           this.$Message.error('Fail!')
         }
       })
+    },
+    register () {
+      this.$Message.error('注册')
     }
   }
 }

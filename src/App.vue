@@ -1,20 +1,5 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <Icon type="ios-menu" size='24' @click="value2 = true"/>
-      <h5>艺术蛋</h5>
-      <router-link to='/login'>
-        <Icon type="md-person" size='24' />
-      </router-link> -->
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to='/shudan'>Shudan</router-link> -->
-      <!-- <Drawer title="Basic Drawer" placement="left" :closable="false" v-model="value2">
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
-    </div> -->
     <router-view/>
   </div>
 </template>

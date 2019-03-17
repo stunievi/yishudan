@@ -1,19 +1,7 @@
 <template>
   <div class="home">
-    <!-- <div id="navt">
-      <Icon type="ios-menu" size='24' @click="value2 = true"/>
-      <h5>艺术蛋</h5>
-      <router-link to='/login'>
-        <Icon type="md-person" size='24' />
-      </router-link>
-      <Drawer title="Basic Drawer" placement="left" :closable="false" v-model="value2">
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
-    </div> -->
     <Title />
-    <img alt="Vue logo" src="../assets/logo.png">
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <p v-on:click="ages++">{{ ages }}</p>
     <p v-on:click="clicks">{{ ages }}</p>
   </div>

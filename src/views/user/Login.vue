@@ -1,6 +1,9 @@
 <template>
   <div class="lg-background">
     <div class="login-container">
+      <div>
+        <!-- <Icon type="md-close" /> -->
+      </div>
       <div class="lg-header">
         <!-- <img class="logo-login-min" src="@/assets/logo.png" > -->
         <p class="lg-header-text">登陆 · 壹书单</p>
@@ -8,12 +11,10 @@
       <div class="lg-body">
         <Form ref="formInline" :model="formInline" :rules="ruleInline" >
           <FormItem prop="user">
-            <Input class="lg-input" type="text" clearable="true" size="large" v-model="formInline.user" placeholder="手机号或邮箱" >
-            </Input>
+            <Input class="lg-input" type="text" clearable size="large" v-model="formInline.user" placeholder="手机号或邮箱" />
           </FormItem>
           <FormItem prop="password">
-            <Input class="lg-input" type="password" size="large" v-model="formInline.password" placeholder="密码">
-            </Input>
+            <Input class="lg-input" type="password" size="large" v-model="formInline.password" placeholder="密码" />
           </FormItem>
           <FormItem>
             <Button class="lg-button" type="primary" @click="handleSubmit('formInline')">登录</Button>

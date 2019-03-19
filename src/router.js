@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/home/Home.vue'
 import Shudan from './views/other/Shudan.vue'
 import HomeTitleView from './views/frameworks/HomeTitleView.vue'
+import HomeContentView from './views/frameworks/HomeContentView.vue'
 // import Login from './views/Login.vue'
 // import Loginstate from './views/Loginstate.vue'
 Vue.use(Router)
@@ -19,12 +20,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: HomeTitleView,
       children: [
         {
           path: '/',
-          component: Home
+          component: HomeContentView,
+          children: [
+            {
+              path: '/',
+              component: Home
+            }
+          ]
         },
         {
           name: 'recommendationlist',

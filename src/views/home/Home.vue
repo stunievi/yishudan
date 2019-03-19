@@ -1,6 +1,74 @@
 <template>
-  <div class="home">
+  <div class="content-width">
+    <BackTop></BackTop>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <div class="banner">
+      <Carousel class="banner-height"  v-model="value2" arrow="none" autoplay loop radius-dot>
+        <CarouselItem>
+          <div class="demo-carousel">1</div>
+        </CarouselItem>
+        <CarouselItem>
+          <div class="demo-carousel">2</div>
+        </CarouselItem>
+        <CarouselItem>
+          <div class="demo-carousel">3</div>
+        </CarouselItem>
+        <CarouselItem>
+          <div class="demo-carousel">4</div>
+        </CarouselItem>
+      </Carousel>
+    </div>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
+    <p v-on:click="ages++">{{ ages }}</p>
     <p v-on:click="ages++">{{ ages }}</p>
     <p v-on:click="clicks">{{ ages }}</p>
   </div>
@@ -24,13 +92,23 @@ export default {
 }
 </script>
 <style lang='scss'>
-#navt {
-  height: 64px;
-  background: #fff;
-  border-bottom: 1px #f9f9f9 solid;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px 0 20px;
+.content-width{
+  width:100%;
+  @include desktop{
+    padding:15px;
+  }
+  .banner{
+    width:100%;
+    margin: 0 auto;
+    background:coral;
+    @include desktop{
+      width:pxTorem(620px);
+      height:pxTorem(250px);
+    }
+    height:pxTorem(150px);    
+    .banner-height{
+      height:inherit
+    }
+  }
 }
 </style>

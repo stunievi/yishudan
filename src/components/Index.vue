@@ -1,7 +1,7 @@
 <template>
     <div>
         <p>{{ msg }}</p>
-        <Button>我爱钿</Button>
+        <!-- <Button>我爱钿</Button> -->
     </div>
 </template>
 <script>

@@ -1,4 +1,7 @@
 $browser-default-font-size: 16px !default;
+$container : 1200px;
+$headerHeight: 64px;
+$contentWidth: 960px;
 html {
   font-size: $browser-default-font-size;
 }

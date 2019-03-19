@@ -1,6 +1,11 @@
 <template>
   <div class="all-view-div">
     <router-view/>
+    <div>
+      <span>
+        这里是备案号
+      </span>
+    </div>
   </div>
 </template>
 <script>

@@ -3,9 +3,12 @@
     <BackTop></BackTop>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <div class="banner">
-      <Carousel class="banner-height"  v-model="value2" arrow="none" autoplay loop radius-dot>
+      <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop>
         <CarouselItem>
-          <div class="demo-carousel">1</div>
+          <div class="demo-carousel">
+            1
+            <img alt="Vue logo" src="../../assets/logo.png">
+          </div>
         </CarouselItem>
         <CarouselItem>
           <div class="demo-carousel">2</div>
@@ -105,9 +108,19 @@ export default {
       width:pxTorem(620px);
       height:pxTorem(250px);
     }
-    height:pxTorem(150px);    
+    height:pxTorem(150px);
     .banner-height{
-      height:inherit
+      height:inherit;
+      .demo-carousel{
+        height:pxTorem(150px);
+        @include desktop{
+          width:pxTorem(620px);
+          height:pxTorem(250px);
+        }
+        img{
+          height:100%;
+        }
+      }
     }
   }
 }

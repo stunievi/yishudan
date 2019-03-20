@@ -16,15 +16,27 @@
           <div class="title-child-logo-search-content">
             <Input class="title-child-input"  search placeholder="搜索" size="small" />
           </div>
-          <div @click="ToUser()">
-            <div class="title-drawer-icon">
+          <div @click="ToUser()" class="user-login-info">
+            <div v-if="!loginStatu" class="title-drawer-icon">
               <Icon type="md-person" size='24' />
             </div>
-            <a class="title-lg-rgs">
-              <span>
-                登录 / 注册
-              </span>
-            </a>
+            <div v-if="loginStatu" class="user-info">
+              <div class="user-pic">
+                <img src= "../assets/logo.png" >
+              </div>
+                <!-- <div class="user-name">
+                  <span>
+                    用户名
+                  </span>
+                </div> -->
+            </div>
+            <div v-else>
+              <a class="title-lg-rgs">
+                <span>
+                  登录 / 注册
+                </span>
+              </a>
+            </div>
           </div>
         </div>
         <Drawer placement="left" :closable="false" v-model="DrawerValue">
@@ -68,8 +80,10 @@ export default {
   name: 'Title',
   data () {
     return {
-      ages: 1,
+      ages: this.GLOBAL.loginStatu,
       DrawerValue: false,
+      // 登录状态代码
+      loginStatu: 1,
       clicks: () => {
         alert(123)
       }
@@ -122,8 +136,21 @@ export default {
       display:none
       //#9adcd1
     }
-    .title-child-logo-search-content{
-      display:none
+    .title-child-logo-search{
+      .title-child-logo-search-content{
+        display:none;
+      }
+      .user-login-info{
+        .user-info{
+          .user-pic{
+            display:flex;
+            img{
+              width:pxTorem(32px);
+              height:pxTorem(32px);
+            }
+          }
+        }
+      }
     }
     @include desktop {
       .title-drawer,.title-drawer-icon{
@@ -137,10 +164,34 @@ export default {
         align-items: center;
         width: 50%;
         justify-content: flex-end;
+        .user-login-info{
+          height:40px;
+          display: flex;
+          align-items: center;
+          .user-info{
+            height:100%;
+            width:100%;
+            display:flex;
+            align-items:center;
+            .user-pic{
+              display:flex;
+              img{
+                border: 1px solid #f9f9f9;
+                border-radius:16px;
+                width:pxTorem(32px);
+                height:pxTorem(32px);
+              }
+            }
+            .user-name{
+              font-size:pxTorem(14px);
+            }
+          }
+        }
         .title-child-logo-search-content{
           display:flex;
           align-items: center;
           width:50%;
+          max-width:pxTorem(240px);
           .title-child-input{
             margin-right:10%;
             width:pxTorem(200px);

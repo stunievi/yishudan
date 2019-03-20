@@ -6,6 +6,7 @@ import 'iview/dist/styles/iview.css'
 // import { Icon, Drawer, Input, Form, FormItem, Message, Button, Alert } from 'iview'
 import Title from './components/Title.vue'
 import iView from 'iview'
+import _Global from './components/global.vue'
 Vue.component('Title', Title)
 // Vue.component('Icon', Icon)
 // Vue.component('Drawer', Drawer)
@@ -17,7 +18,7 @@ Vue.component('Title', Title)
 // Vue.component('Alert', Alert)
 Vue.use(iView)
 Vue.config.productionTip = false
-
+Vue.prototype.GLOBAL = _Global
 new Vue({
   router,
   render: h => h(App)

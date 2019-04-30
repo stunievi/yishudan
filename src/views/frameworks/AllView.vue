@@ -1,18 +1,18 @@
 <template>
-  <div class="all-view-div">
+  <!-- <div class="all-view-div"> -->
     <router-view/>
-    <div>
+    <!-- <div>
       <span>
         这里是备案号
       </span>
     </div>
-  </div>
+  </div> -->
 </template>
 <script>
 export default {
   data () {
     return {
-      value2: false
+      // value2: false
     }
   }
 }

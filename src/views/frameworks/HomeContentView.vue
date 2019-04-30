@@ -11,7 +11,7 @@
           </h4>
         </div>
         <div class="menu">
-          <Menu :theme="theme3" active-name="1" width="100%">
+          <Menu  active-name="1" width="100%">
             <MenuItem name="1">
               <Icon type="md-document" />
               文章管理
@@ -38,7 +38,7 @@
 export default {
   data () {
     return {
-      value2: false
+      // value2: false
     }
   }
 }

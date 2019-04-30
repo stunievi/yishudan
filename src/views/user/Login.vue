@@ -149,7 +149,12 @@ export default {
   methods: {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
+         console.log(valid)
         if (valid) {
+          this.getData.getData('/api/login', this.formInline).then(R => {
+            // eslint-disable-next-line no-console
+            console.log(R)
+          })
           this.$Message.success('Success!')
         } else {
           this.$Message.error('Fail!')

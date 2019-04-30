@@ -3,7 +3,8 @@
     <BackTop></BackTop>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <div class="banner">
-      <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop>
+      <!-- <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop> -->
+      <Carousel class="banner-height"   arrow="always" autoplay loop>
         <CarouselItem>
           <div class="demo-carousel">
             1
@@ -79,11 +80,12 @@
 
 <script>
 export default {
-  name: 'home',
+  // name: 'home',
   data () {
     return {
       ages: 1,
-      value2: false,
+      // value2: false,
+      datas : [],
       clicks: () => {
         alert(123)
       }
@@ -91,6 +93,21 @@ export default {
   },
   components: {
     // HelloWorld
+  },
+  methods: {
+    getInfo: (T) => {
+      T.getData.getData('/api/home_data_list').then(R => {
+        // eslint-disable-next-line no-console
+        console.log(R)
+        T.datas = R
+        for (var i in R.result){
+          console.log(R.result[i])
+        }
+      })
+    }
+  },
+  mounted: function () {
+    this.getInfo(this)
   }
 }
 </script>

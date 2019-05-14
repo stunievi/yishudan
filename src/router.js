@@ -29,13 +29,29 @@ export default new Router({
             {
               path: '/',
               component: Home
+            },
+            {
+              name: 'recommendationlist',
+              path: 'recommendationlist',
+              component: () => import('./views/home/RecommendationList.vue')
+              // redirect: {
+              //   name: 'recommendationlist'
+              // }
             }
           ]
         },
         {
-          name: 'recommendationlist',
-          path: 'recommendationlist',
+          name: 'mrecommendationlist',
+          path: 'mrecommendationlist',
           component: () => import('./views/home/RecommendationList.vue')
+        },
+        {
+          name: 'articledetail',
+          path: 'articledetail',
+          component: () => import('./views/article/ArticleDetail.vue')
+          // redirect: {
+          //   name: 'recommendationlist'
+          // }
         }
       ]
     },
@@ -52,16 +68,21 @@ export default new Router({
       name: 'shudan',
       component: Shudan
     },
-    // 登陆检查
     {
       path: '/user',
-      component: () => import('./views/frameworks/AllView.vue'),
+      name: 'user',
+      component: () => import('./views/frameworks/UserView.vue'),
       children: [
         {
           // 登陆检查
           path: 'login',
           name: 'login',
           component: () => import('./views/user/Login.vue')
+        },
+        {
+          // 登陆检查
+          path: 'userHome',
+          component: () => import('./views/user/UserHome.vue')
         }
       ]
     }

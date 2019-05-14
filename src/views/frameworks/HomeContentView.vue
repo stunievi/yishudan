@@ -11,22 +11,22 @@
           </h4>
         </div>
         <div class="menu">
-          <Menu  active-name="1" width="100%">
-            <MenuItem name="1">
-              <Icon type="md-document" />
-              文章管理
+          <Menu active-name="1" width="100%" >
+            <MenuItem name="1" replace to="/">
+                <Icon type="md-document" />
+                首&nbsp;&nbsp;页
             </MenuItem>
-            <MenuItem name="2">
-              <Icon type="md-chatbubbles" />
-              评论管理
+            <MenuItem name="2" to="/recommendationlist">
+                <Icon type="md-chatbubbles" />
+                精品书单
             </MenuItem>
             <MenuItem name="3">
-              <Icon type="md-heart" />
-              用户留存
+                <Icon type="md-heart" />
+                精品书单
             </MenuItem>
             <MenuItem name="4">
-              <Icon type="md-leaf" />
-              流失用户
+                <Icon type="md-leaf" />
+                精品书单
             </MenuItem>
           </Menu>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="shudan">
+  <div class="content-width">
     <!-- <img alt="Vue logok" src="../assets/logo.png"> -->
     <Index class="ppp" msg='推荐书单'/>
   </div>
@@ -15,7 +15,11 @@ export default {
 </script>
 <style lang="scss">
 $color: red;
-.ppp {
-  color:$color
-};
+.content-width{
+  width:100%;
+  @include desktop{
+    padding:15px;
+    width:pxTorem(650px);
+  }
+}
 </style>

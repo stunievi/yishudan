@@ -10,8 +10,8 @@
       </div>
       <div class="lg-body">
         <Form ref="formInline" :model="formInline" :rules="ruleInline" >
-          <FormItem prop="user">
-            <Input class="lg-input" type="text" clearable size="large" v-model="formInline.user" placeholder="手机号或邮箱" />
+          <FormItem prop="email">
+            <Input class="lg-input" type="text" clearable size="large" v-model="formInline.email" placeholder="手机号或邮箱" />
           </FormItem>
           <FormItem prop="password">
             <Input class="lg-input" type="password" size="large" v-model="formInline.password" placeholder="密码" />
@@ -132,11 +132,11 @@ export default {
   data () {
     return {
       formInline: {
-        user: '',
+        email: '',
         password: ''
       },
       ruleInline: {
-        user: [
+        email: [
           { required: true, message: '请输入手机号或邮箱', trigger: 'blur' }
         ],
         password: [
@@ -149,13 +149,18 @@ export default {
   methods: {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
-         console.log(valid)
+         console.log(this.formInline)
         if (valid) {
-          this.getData.getData('/api/login', this.formInline).then(R => {
+          // let formData = new FormData()
+          // formData.append('email', this.formInline['email'])
+          // formData.append('password', this.formInline['password'])
+          this.getData.postData('/api/login', 'email=' + this.formInline['email'] + '&password=' + this.formInline['password']).then(R => {
             // eslint-disable-next-line no-console
-            console.log(R)
+            this.$Message.success('Success!')
+            localStorage.setItem('info', R.token)
+            console.log(this)
+            this.goHome()
           })
-          this.$Message.success('Success!')
         } else {
           this.$Message.error('Fail!')
         }
@@ -163,6 +168,9 @@ export default {
     },
     register () {
       this.$Message.error('注册')
+    },
+    goHome(){
+      this.$router.replace('/')
     }
   }
 }

@@ -1,80 +1,38 @@
 <template>
-  <div class="content-width">
-    <BackTop></BackTop>
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <div class="banner">
-      <!-- <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop> -->
-      <Carousel class="banner-height"   arrow="always" autoplay loop>
-        <CarouselItem>
-          <div class="demo-carousel">
-            1
-            <img alt="Vue logo" src="../../assets/logo.png">
+  <div class="content-width" >
+    <div v-if="statu == 1">
+      <BackTop></BackTop>
+      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+      <div class="banner">
+        <!-- <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop> -->
+        <Carousel class="banner-height"   arrow="always" autoplay loop >
+          <CarouselItem v-for="list in datas.banner" :key='list'>
+            <div class="demo-carousel">
+              <!-- {{list}} -->
+              <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
+              <img alt="Yishudan" :src='list' width='100%' height="100%">
+            </div>
+          </CarouselItem>
+        </Carousel>
+      </div>
+      <div class="articlelist">
+        <div class="anticle" v-for="artlist in datas.articlelist" @click="toArtisanDetail(artlist.article_id)">
+          <div class="titlebox">
+            <a class="title">{{artlist.title}}！</a>
+            <span class="profile">Lady Gaga一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华受世人所知，日前更凭借《一个明星的诞生》的插曲《Shallow》拿到了她人生中的第一个奥斯
+            </span>
           </div>
-        </CarouselItem>
-        <CarouselItem>
-          <div class="demo-carousel">2</div>
-        </CarouselItem>
-        <CarouselItem>
-          <div class="demo-carousel">3</div>
-        </CarouselItem>
-        <CarouselItem>
-          <div class="demo-carousel">4</div>
-        </CarouselItem>
-      </Carousel>
+          <div class="pic" v-if="artlist.img != 'none'">
+            <img :src='artlist.img'/>
+          </div>
+        </div>
+      </div>
+      <Copy />
     </div>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="ages++">{{ ages }}</p>
-    <p v-on:click="clicks">{{ ages }}</p>
+    <div v-else-if="statu == 0">
+      <!-- <span>网络错误</span> -->
+      <Loading :type="networkStatu"/>
+    </div>
   </div>
 </template>
 
@@ -83,11 +41,12 @@ export default {
   // name: 'home',
   data () {
     return {
-      ages: 1,
-      // value2: false,
+      statu: 0,
+      networkStatu: true,
       datas : [],
-      clicks: () => {
-        alert(123)
+      toArtisanDetail: (articleId) => {
+        console.log(articleId)
+        this.$router.push({ name: 'articledetail', params: { 'articleId': articleId } })
       }
     }
   },
@@ -98,15 +57,17 @@ export default {
     getInfo: (T) => {
       T.getData.getData('/api/home_data_list').then(R => {
         // eslint-disable-next-line no-console
-        console.log(R)
         T.datas = R
-        for (var i in R.result){
-          console.log(R.result[i])
-        }
+        T.statu = 1
+      }).catch(R=>{
+        T.statu = 0
+        T.networkStatu = false
+        // console.log(123,T)
       })
     }
   },
   mounted: function () {
+    // 待修改
     this.getInfo(this)
   }
 }
@@ -114,13 +75,16 @@ export default {
 <style lang='scss'>
 .content-width{
   width:100%;
+  margin: 0 auto;
   @include desktop{
-    padding:15px;
+    padding:15px 15px 0 15px;
+    width:pxTorem(650px);
   }
   .banner{
     width:100%;
     margin: 0 auto;
     background:coral;
+    border-radius: 5px;
     @include desktop{
       width:pxTorem(620px);
       height:pxTorem(250px);
@@ -128,6 +92,9 @@ export default {
     height:pxTorem(150px);
     .banner-height{
       height:inherit;
+      .ivu-carousel-list{
+        border-radius: 5px;
+      }
       .demo-carousel{
         height:pxTorem(150px);
         @include desktop{
@@ -140,5 +107,74 @@ export default {
       }
     }
   }
+  .articlelist{
+    margin-top:2px;
+    .anticle{
+      border-bottom: 1.5px solid #fff;
+      border-radius: 5px;
+      display: flex;
+      cursor:pointer;
+      padding: 0px 0;
+      height:pxTorem(100px);
+      width:100%;
+      background: rgb(248,248,248);
+      @include desktop{
+        width:pxTorem(620px);
+        height:pxTorem(130px);
+        border-bottom: 1px solid #eee;
+        background:#fff;
+      }
+      justify-content: center;
+      .titlebox{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        margin-right:5px;
+        .title{
+          overflow: hidden;
+          // width: min-content;
+          text-align: left;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin:5px;
+          // display: flex;
+          color:#333;
+          font-weight: 700;
+          font-size:pxTorem(14px);
+          @include desktop{
+            font-size:pxTorem(16px);
+            font-weight: 700;
+          }
+        }
+        .profile{
+          overflow: hidden;
+          // text-overflow: ellipsis;
+          // white-space: nowrap;
+          color:#999;
+          height:pxTorem(40px);
+          line-height: 20px;
+          @include desktop{
+            height:pxTorem(56px);
+            line-height: 20px;
+          }
+        }
+      }
+      .pic{
+        align-self: center;
+        img{
+          @include desktop{
+            width:pxTorem(150px);
+            height:pxTorem(100px);
+          }
+          border-radius: 5px;
+          width:pxTorem(80px);
+          height:pxTorem(80px);
+        }
+      }
+    }
+  }
+  
 }
 </style>

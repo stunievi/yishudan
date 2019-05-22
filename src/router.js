@@ -25,9 +25,11 @@ export default new Router({
         {
           path: '/',
           component: HomeContentView,
+          // pc 用户首页子页面
           children: [
             {
               path: '/',
+              // name: '/',
               component: Home
             },
             {
@@ -37,13 +39,34 @@ export default new Router({
               // redirect: {
               //   name: 'recommendationlist'
               // }
+            },
+            {
+              name: 'homeitemthree',
+              path: 'homeitemthree',
+              component: () => import('./views/home/HomeItemThree.vue')
+            },
+            {
+              name: 'homeitemfour',
+              path: 'homeitemfour',
+              component: () => import('./views/home/HomeItemFour.vue')
             }
           ]
         },
+        // mobile M首页
         {
           name: 'mrecommendationlist',
           path: 'mrecommendationlist',
           component: () => import('./views/home/RecommendationList.vue')
+        },
+        {
+          name: 'mhomeitemthree',
+          path: 'mhomeitemthree',
+          component: () => import('./views/home/HomeItemThree.vue')
+        },
+        {
+          name: 'mhomeitemfour',
+          path: 'mhomeitemfour',
+          component: () => import('./views/home/HomeItemFour.vue')
         },
         {
           name: 'articledetail',
@@ -52,6 +75,11 @@ export default new Router({
           // redirect: {
           //   name: 'recommendationlist'
           // }
+        },
+        {
+          name: 'searchresult',
+          path: 'searchresult',
+          component: () => import('./views/other/Search.vue')
         }
       ]
     },
@@ -71,7 +99,7 @@ export default new Router({
     {
       path: '/user',
       name: 'user',
-      component: () => import('./views/frameworks/UserView.vue'),
+      component: () => import('./views/frameworks/UserLoginStatu.vue'),
       children: [
         {
           // 登陆检查
@@ -81,8 +109,49 @@ export default new Router({
         },
         {
           // 登陆检查
-          path: 'userHome',
-          component: () => import('./views/user/UserHome.vue')
+          path: 'home',
+          component: () => import('./views/frameworks/UserTitleView.vue'),
+          children: [
+            {
+              path: '/',
+              component: () => import('./views/frameworks/UserContentView.vue'),
+              // 用户后台子页面
+              children: [
+                {
+                  path: '/',
+                  redirect: '/userinfo',
+                },
+                {
+                  path: '/userinfo',
+                  component: () => import('./views/user/UserInfo.vue')
+                },
+                {
+                  path: '/Collage',
+                  component: () => import('./views/user/Collage.vue')
+                },
+                {
+                  path: '/ArtiManage',
+                  component: () => import('./views/user/ArtiManage.vue')
+                },
+                {
+                  path: '/Publish',
+                  component: () => import('./views/user/Publish.vue')
+                }
+              ]
+            },
+            {
+              path: '/MCollage',
+              component: () => import('./views/user/Collage.vue')
+            },
+            {
+              path: '/MArtiManage',
+              component: () => import('./views/user/ArtiManage.vue')
+            },
+            {
+              path: '/MPublish',
+              component: () => import('./views/user/Publish.vue')
+            }
+          ]
         }
       ]
     }

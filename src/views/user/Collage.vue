@@ -3,31 +3,8 @@
     <div v-if="statu == 1">
       <BackTop></BackTop>
       <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-      <div class="banner">
-        <!-- <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop> -->
-        <Carousel class="banner-height"   arrow="always" autoplay loop >
-          <CarouselItem v-for="list in datas.banner" :key='list'>
-            <div class="demo-carousel">
-              <!-- {{list}} -->
-              <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
-              <img alt="Yishudan" :src='list' width='100%' height="100%">
-            </div>
-          </CarouselItem>
-        </Carousel>
-      </div>
-      <div class="articlelist">
-        <div class="anticle" v-for="artlist in datas.articlelist" :key='artlist' @click="toArtisanDetail(artlist.article_id)">
-          <div class="titlebox">
-            <a class="title">{{artlist.title}}！</a>
-            <span class="profile">Lady Gaga一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华受世人所知，日前更凭借《一个明星的诞生》的插曲《Shallow》拿到了她人生中的第一个奥斯
-            </span>
-          </div>
-          <div class="pic" v-if="artlist.img != 'none'">
-            <img :src='artlist.img'/>
-          </div>
-        </div>
-      </div>
-      <Copy />
+      <!-- 版权 -->
+      <!-- <Copy /> -->
     </div>
     <div v-else-if="statu == 0">
       <!-- <span>网络错误</span> -->
@@ -41,7 +18,7 @@ export default {
   // name: 'home',
   data () {
     return {
-      statu: 0,
+      statu: 1,
       networkStatu: true,
       datas: [],
       toArtisanDetail: (articleId) => {
@@ -54,21 +31,21 @@ export default {
     // HelloWorld
   },
   methods: {
-    getInfo: (T) => {
-      T.getData.getData('/api/home_data_list').then(R => {
-        // eslint-disable-next-line no-console
-        T.datas = R
-        T.statu = 1
-      }).catch(R => {
-        T.statu = 0
-        T.networkStatu = false
-        // console.log(123,T)
-      })
-    }
+    // getInfo: (T) => {
+    //   T.getData.getData('/api/home_data_list').then(R => {
+    //     // eslint-disable-next-line no-console
+    //     T.datas = R
+    //     T.statu = 1
+    //   }).catch(R=>{
+    //     T.statu = 0
+    //     T.networkStatu = false
+    //     // console.log(123,T)
+    //   })
+    // }
   },
   mounted: function () {
     // 待修改
-    this.getInfo(this)
+    // this.getInfo(this)
   }
 }
 </script>

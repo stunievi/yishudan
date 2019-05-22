@@ -8,26 +8,35 @@
         </div>
         <div class="title-menulist">
           <a href="/">
-            <h3>用户中心</h3>
+            <h3>壹书单</h3>
           </a>
         </div>
         <!-- <div class="title-menulist">
           <h3>壹书单</h3>
         </div> -->
         <div class="title-child-logo-search">
+          <div class="title-child-logo-search-content">
+            <Input class="title-child-input" v-model="searchText"  search placeholder="搜索"  @on-search="ToSearch(searchText)" size="small" />
+          </div>
           <div @click="ToUser()" class="user-login-info">
             <div v-if="!loginStatu" class="title-drawer-icon">
               <Icon type="md-person" size='24' />
             </div>
-            <div >
+            <div v-if="loginStatu" class="user-info">
+              <div class="user-pic">
+                <img src= "../assets/logo.png" >
+              </div>
+            </div>
+            <div v-else class="user-pc">
               <a class="title-lg-rgs">
                 <span>
-                  退出
+                  登录 / 注册
                 </span>
               </a>
             </div>
           </div>
         </div>
+        <!-- 抽屉 -->
         <Drawer placement="left" :closable="false" v-model="DrawerValue">
           <div class="title-drawer">
             <div class="drawer-logo-position">
@@ -35,29 +44,31 @@
               <span>书的海洋中为你导航</span>
             </div>
             <div class="drawer-menu">
+              <Input class="title-child-input" search v-model="searchText" placeholder="搜索" @on-search="ToSearch(searchText)" size="small" />
               <div class="drawer-menu-allcontent" @click="toMenuItem(1)">
                 <Menu active-name="1" width="100%" >
                   <MenuItem name="1" replace to="/">
                       <Icon type="md-document" />
-                      个人信息
+                      首页
                   </MenuItem>
                   <MenuItem name="2" to="/mrecommendationlist">
                       <Icon type="md-chatbubbles" />
-                      文章管理
+                      精品书单
                   </MenuItem>
-                  <MenuItem name="3">
+                  <MenuItem name="3" to="/mhomeitemthree">
                       <Icon type="md-heart" />
-                      我的收藏
+                      广而告之
                   </MenuItem>
-                  <MenuItem name="4">
+                  <MenuItem name="4" to="/mhomeitemfour">
                       <Icon type="md-leaf" />
-                      
+                      下载专区
                   </MenuItem>
                 </Menu>
               </div>
             </div>
           </div>
         </Drawer>
+        <!-- 抽屉结束 -->
       </div>
     </div>
   </div>
@@ -69,13 +80,17 @@ export default {
   data () {
     return {
       ages: this.GLOBAL.loginStatu,
+      searchText: '',
       DrawerValue: false,
       // 登录状态代码
-      loginStatu: 1,
+      loginStatu: 0,
       clicks: () => {
         alert(123)
       }
     }
+  },
+  mounted: function () {
+    this.loginStatu = localStorage.getItem('info') == null ? 0 : 1
   },
   methods: {
     ToUser () {
@@ -94,12 +109,19 @@ export default {
       //     this.$router.push({ name: 'recommendationlist', params: { userId: '123' }})
       //     break;
       // }
+    },
+    ToSearch (T) {
+      if (T !== '') {
+        this.DrawerValue = false
+        this.$router.push({ name: 'searchresult' })
+      }
     }
   }
 }
 </script>
 <style lang='scss'>
 .title-fix{
+  padding: 0 5px 0 5px;
   .ivu-affix{
     z-index: 99;
   }
@@ -119,14 +141,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     .title-lg-rgs{
-      display:flex;
-        border: 1px solid #3194d0;
-        color:#3194d0;
-        padding:5px 10px;
-        border-radius:16px;
-        span{
-          font-size:pxTorem(14px)
-        }
+      display:none
       //#9adcd1
     }
     .title-menulist{
@@ -135,6 +150,31 @@ export default {
           color:#333
         }
       }
+    .title-child-logo-search{
+      .title-child-logo-search-content{
+        display:none;
+      }
+      .user-login-info{
+        .user-pc{
+          display:none
+        }
+        @include desktop {
+          .user-pc{
+            display:flex
+          }
+        }
+        .user-info{
+          .user-pic{
+            display:flex;
+            cursor: pointer;
+            img{
+              width:pxTorem(32px);
+              height:pxTorem(32px);
+            }
+          }
+        }
+      }
+    }
     @include desktop {
       .title-drawer,.title-drawer-icon{
         display:none
@@ -143,6 +183,61 @@ export default {
         // min-width:350px;
         a{
           color:#333
+        }
+      }
+      .title-child-logo-search{
+        display:flex;
+        align-items: center;
+        width: 50%;
+        justify-content: flex-end;
+        .user-login-info{
+          height:40px;
+          display: flex;
+          align-items: center;
+          .user-info{
+            height:100%;
+            width:100%;
+            display:flex;
+            align-items:center;
+            .user-pic{
+              display:flex;
+              img{
+                border: 1px solid #f9f9f9;
+                border-radius:16px;
+                width:pxTorem(32px);
+                height:pxTorem(32px);
+              }
+            }
+            .user-name{
+              font-size:pxTorem(14px);
+            }
+          }
+        }
+        .title-child-logo-search-content{
+          display:flex;
+          align-items: center;
+          width:50%;
+          max-width:pxTorem(240px);
+          .title-child-input{
+            margin-right:10%;
+            width:pxTorem(200px);
+            display:flex;
+            align-items: center;
+            width:100%;
+            input{
+              border-radius: 16px;
+              height:pxTorem(32px);
+              padding-left: 15px
+            }
+            i{
+              font-size:pxTorem(16px);
+              margin-right:5px;
+              border: 1px solid #d9d9d9;
+              border-radius: 16px;
+              background: #d9d9d9;
+              color: #fff;
+            }
+          }
         }
       }
       .title-lg-rgs{
@@ -170,6 +265,24 @@ export default {
   }
   .drawer-menu{
     width:100%
+  }
+  .title-child-input{
+    display:flex;
+    align-items: center;
+    padding: 10px 0;
+    input{
+      // border-radius: 16px;
+      height:pxTorem(32px);
+      padding-left: 10px
+    }
+    i{
+      font-size:pxTorem(16px);
+      margin-right:5px;
+      border: 1px solid #d9d9d9;
+      border-radius: 16px;
+      background: #d9d9d9;
+      color: #fff;
+    }
   }
 }
 </style>

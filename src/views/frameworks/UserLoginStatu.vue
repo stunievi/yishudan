@@ -16,14 +16,14 @@ export default {
       // value2: false
     }
   },
-  mounted () {
+  created () {
     // 待修改
-    let isLogin = 0
-      if (isLogin) {
-        this.$router.push({ path: '/user/userHome', params: { userId: '123' } })
-      }else{
-        this.$router.push({ name: 'login', params: { userId: '123' } })
-      }
+    let isLogin = localStorage.getItem('info') == null ? 0 : 1
+    if (isLogin) {
+      this.$router.replace({ path: '/user/home', params: { userId: '123' } })
+    } else {
+      this.$router.replace({ name: 'login', params: { userId: '123' } })
+    }
   }
 }
 </script>

@@ -149,27 +149,27 @@ export default {
   methods: {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
-         console.log(this.formInline)
         if (valid) {
           // let formData = new FormData()
           // formData.append('email', this.formInline['email'])
           // formData.append('password', this.formInline['password'])
           this.getData.postData('/api/login', 'email=' + this.formInline['email'] + '&password=' + this.formInline['password']).then(R => {
             // eslint-disable-next-line no-console
-            this.$Message.success('Success!')
+            this.$Message.success('登录成功')
             localStorage.setItem('info', R.token)
-            console.log(this)
             this.goHome()
+          }).catch(E => {
+            this.$Message.error('密码或用户名错误')
           })
         } else {
-          this.$Message.error('Fail!')
+          this.$Message.error('密码或用户名错误')
         }
       })
     },
     register () {
       this.$Message.error('注册')
     },
-    goHome(){
+    goHome () {
       this.$router.replace('/')
     }
   }

@@ -5,28 +5,28 @@
     </div>
     <div class="desktop-menu">
       <Affix :offset-top="64">
-        <div class="affix-logo-text">
+        <!-- <div class="affix-logo-text">
           <h4>
             书的海洋中为你导航
           </h4>
-        </div>
+        </div> -->
         <div class="menu">
           <Menu active-name="1" width="100%" >
-            <MenuItem name="1" replace to="/">
+            <MenuItem name="1" replace to="/userinfo">
                 <Icon type="md-document" />
-                首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页
+                个人信息
             </MenuItem>
-            <MenuItem name="2" to="/recommendationlist">
+            <MenuItem name="2" to="/ArtiManage">
                 <Icon type="md-chatbubbles" />
-                精品书单
+                文章管理
             </MenuItem>
-            <MenuItem name="3" to="/homeitemthree">
+            <MenuItem name="3" to="/Collage">
                 <Icon type="md-heart" />
-                广而告之
+                我的收藏
             </MenuItem>
-            <MenuItem name="4" to="/homeitemfour">
+            <MenuItem name="4" to="/Publish">
                 <Icon type="md-leaf" />
-                下载专区
+                我要发表
             </MenuItem>
           </Menu>
         </div>
@@ -60,6 +60,7 @@ export default {
     .desktop-menu{
       display:unset;
       width:pxTorem(180px);
+      margin-top:15px;
       .affix-logo-text{
         height: 64px;
         display: flex;

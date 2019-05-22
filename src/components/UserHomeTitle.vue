@@ -8,34 +8,21 @@
         </div>
         <div class="title-menulist">
           <a href="/">
-            <h3>壹书单</h3>
+            <h3>用户中心</h3>
           </a>
         </div>
         <!-- <div class="title-menulist">
           <h3>壹书单</h3>
         </div> -->
         <div class="title-child-logo-search">
-          <div class="title-child-logo-search-content">
-            <Input class="title-child-input"  search placeholder="搜索" size="small" />
-          </div>
-          <div @click="ToUser()" class="user-login-info">
+          <div @click='toExit()' class="user-login-info">
             <div v-if="!loginStatu" class="title-drawer-icon">
               <Icon type="md-person" size='24' />
             </div>
-            <div v-if="loginStatu" class="user-info">
-              <div class="user-pic">
-                <img src= "../assets/logo.png" >
-              </div>
-                <!-- <div class="user-name">
-                  <span>
-                    用户名
-                  </span>
-                </div> -->
-            </div>
-            <div v-else>
+            <div >
               <a class="title-lg-rgs">
-                <span>
-                  登录 / 注册
+                <span >
+                  退出
                 </span>
               </a>
             </div>
@@ -48,24 +35,23 @@
               <span>书的海洋中为你导航</span>
             </div>
             <div class="drawer-menu">
-              <Input class="title-child-input" search placeholder="搜索" size="small" />
               <div class="drawer-menu-allcontent" @click="toMenuItem(1)">
                 <Menu active-name="1" width="100%" >
-                  <MenuItem name="1" replace to="/">
+                  <MenuItem name="1" replace to="/userinfo">
                       <Icon type="md-document" />
-                      首页
+                      个人信息
                   </MenuItem>
-                  <MenuItem name="2" to="/mrecommendationlist">
+                  <MenuItem name="2" to="/MArtiManage">
                       <Icon type="md-chatbubbles" />
-                      精品书单
+                      文章管理
                   </MenuItem>
-                  <MenuItem name="3">
+                  <MenuItem name="3" to="/MCollage">
                       <Icon type="md-heart" />
-                      精品书单
+                      我的收藏
                   </MenuItem>
-                  <MenuItem name="4">
-                      <Icon type="md-leaf" />
-                      精品书单
+                  <MenuItem name="4" to="/MPublish">
+                    <Icon type="md-leaf" />
+                    我要发表
                   </MenuItem>
                 </Menu>
               </div>
@@ -85,7 +71,7 @@ export default {
       ages: this.GLOBAL.loginStatu,
       DrawerValue: false,
       // 登录状态代码
-      loginStatu: 0,
+      loginStatu: localStorage.getItem('info') == null ? 0 : 1,
       clicks: () => {
         alert(123)
       }
@@ -108,12 +94,18 @@ export default {
       //     this.$router.push({ name: 'recommendationlist', params: { userId: '123' }})
       //     break;
       // }
+    },
+    toExit () {
+      localStorage.removeItem('info')
+      this.$Message.success('退出')
+      this.$router.replace('/')
     }
   }
 }
 </script>
 <style lang='scss'>
 .title-fix{
+  padding: 0 5px 0 5px;
   .ivu-affix{
     z-index: 99;
   }
@@ -133,7 +125,14 @@ export default {
     align-items: center;
     justify-content: space-between;
     .title-lg-rgs{
-      display:none
+      display:flex;
+        border: 1px solid #3194d0;
+        color:#3194d0;
+        padding:5px 10px;
+        border-radius:16px;
+        span{
+          font-size:pxTorem(14px)
+        }
       //#9adcd1
     }
     .title-menulist{
@@ -142,23 +141,6 @@ export default {
           color:#333
         }
       }
-    .title-child-logo-search{
-      .title-child-logo-search-content{
-        display:none;
-      }
-      .user-login-info{
-        .user-info{
-          .user-pic{
-            display:flex;
-            cursor: pointer;  
-            img{
-              width:pxTorem(32px);
-              height:pxTorem(32px);
-            }
-          }
-        }
-      }
-    }
     @include desktop {
       .title-drawer,.title-drawer-icon{
         display:none
@@ -167,61 +149,6 @@ export default {
         // min-width:350px;
         a{
           color:#333
-        }
-      }
-      .title-child-logo-search{
-        display:flex;
-        align-items: center;
-        width: 50%;
-        justify-content: flex-end;
-        .user-login-info{
-          height:40px;
-          display: flex;
-          align-items: center;
-          .user-info{
-            height:100%;
-            width:100%;
-            display:flex;
-            align-items:center;
-            .user-pic{
-              display:flex;
-              img{
-                border: 1px solid #f9f9f9;
-                border-radius:16px;
-                width:pxTorem(32px);
-                height:pxTorem(32px);
-              }
-            }
-            .user-name{
-              font-size:pxTorem(14px);
-            }
-          }
-        }
-        .title-child-logo-search-content{
-          display:flex;
-          align-items: center;
-          width:50%;
-          max-width:pxTorem(240px);
-          .title-child-input{
-            margin-right:10%;
-            width:pxTorem(200px);
-            display:flex;
-            align-items: center;
-            width:100%;
-            input{
-              border-radius: 16px;
-              height:pxTorem(32px);
-              padding-left: 15px
-            }
-            i{
-              font-size:pxTorem(16px);
-              margin-right:5px;
-              border: 1px solid #d9d9d9;
-              border-radius: 16px;
-              background: #d9d9d9;
-              color: #fff;
-            }
-          }
         }
       }
       .title-lg-rgs{
@@ -249,24 +176,6 @@ export default {
   }
   .drawer-menu{
     width:100%
-  }
-  .title-child-input{
-    display:flex;
-    align-items: center;
-    padding: 10px 0;
-    input{
-      // border-radius: 16px;
-      height:pxTorem(32px);
-      padding-left: 10px
-    }
-    i{
-      font-size:pxTorem(16px);
-      margin-right:5px;
-      border: 1px solid #d9d9d9;
-      border-radius: 16px;
-      background: #d9d9d9;
-      color: #fff;
-    }
   }
 }
 </style>

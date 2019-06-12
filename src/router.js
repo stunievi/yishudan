@@ -109,6 +109,12 @@ export default new Router({
         },
         {
           // 登陆检查
+          path: 'register',
+          name: 'register',
+          component: () => import('./views/user/Register.vue')
+        },
+        {
+          // 登陆检查
           path: 'home',
           component: () => import('./views/frameworks/UserTitleView.vue'),
           children: [
@@ -119,7 +125,7 @@ export default new Router({
               children: [
                 {
                   path: '/',
-                  redirect: '/userinfo',
+                  redirect: '/userinfo'
                 },
                 {
                   path: '/userinfo',

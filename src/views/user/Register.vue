@@ -6,7 +6,7 @@
       </div>
       <div class="lg-header">
         <!-- <img class="logo-login-min" src="@/assets/logo.png" > -->
-        <p class="lg-header-text">登陆 · 壹书单</p>
+        <p class="lg-header-text">注册 · 壹书单</p>
       </div>
       <div class="lg-body">
         <Form ref="formInline" :model="formInline" :rules="ruleInline" >
@@ -16,14 +16,19 @@
           <FormItem prop="password">
             <Input class="lg-input" type="password" size="large" v-model="formInline.password" placeholder="密码" />
           </FormItem>
+          <FormItem prop="twopassword">
+            <Input class="lg-input" type="password" size="large" v-model="formInline.twopassword" placeholder="确认密码" />
+          </FormItem>
           <FormItem>
-            <Button class="lg-button" type="primary" @click="handleSubmit('formInline')">登录</Button>
+            <!-- <Button class="lg-button" type="primary" @click="handleSubmit('formInline')">登录</Button> -->
+            <Button class="lg-button" type="primary" @click="handleSubmit('formInline')">注册</Button>
           </FormItem>
         </Form>
       </div>
       <div class="lg-footer">
         <div>
-          <Button class="lg-button lg-register" type="primary" to="/user/register">注册</Button>
+          <Button class="lg-button lg-register" type="primary" >登录</Button>
+          <!-- <Button class="lg-button lg-register" type="primary" @click="register('formInline')">注册</Button> -->
         </div>
         <div class="lg-extra">
           <span class="lg-extra-title">
@@ -42,8 +47,6 @@
 <style lang="scss">
 .lg-background{
   height:100%;
-  display: flex;
-  align-items: center;
   @include desktop {
     background:#f3f3f3;
     display: flex;
@@ -136,15 +139,27 @@ export default {
     return {
       formInline: {
         email: '',
-        password: ''
+        password: '',
+        twopassword: ''
       },
       ruleInline: {
         email: [
-          { required: true, message: '邮箱', trigger: 'blur' }
+          { required: true, type: 'email', message: '请输入正确邮箱', trigger: 'blur' }
         ],
         password: [
-          { required: true, message: '请输入密码.', trigger: 'blur' },
-          { type: 'string', min: 6, message: '密码不能少于6位', trigger: 'blur' }
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { type: 'string', min: 8, message: '密码不能少于8位', trigger: 'blur' }
+        ],
+        twopassword: [
+          { required: true,
+            validator: (rule, value, callback) => {
+              if (value === this.formInline['password']) {
+                callback()
+              } else {
+                callback(new Error('密码不匹配'))
+              }
+            },
+            trigger: 'blur' }
         ]
       }
     }
@@ -156,25 +171,27 @@ export default {
           // let formData = new FormData()
           // formData.append('email', this.formInline['email'])
           // formData.append('password', this.formInline['password'])
-          this.getData.postData('/api/login', 'email=' + this.formInline['email'] + '&password=' + this.formInline['password']).then(R => {
+          this.getData.postData('/api/register', 'email=' + this.formInline['email'] + '&password=' + this.formInline['password'] + '&password_confirmation=' + this.formInline['twopassword']).then(R => {
             // eslint-disable-next-line no-console
-            this.$Message.success('登录成功')
-            localStorage.setItem('info', R.token)
-            localStorage.setItem('true', 1)
-            this.goHome()
+            console.log(R)
+            if (R === 'success') {
+              this.$Message.success('注册成功')
+              this.goLogin()
+            } else {
+              this.$Message.success('注册失败')
+            }
+            // localStorage.setItem('info', R.token)
+            // this.goHome()
           }).catch(E => {
-            this.$Message.error('密码或邮箱错误')
+            this.$Message.error('密码或用户名错误')
           })
         } else {
-          this.$Message.error('密码或邮箱错误')
+          this.$Message.error('密码或用户名错误')
         }
       })
     },
-    register () {
-      this.$Message.error('注册')
-    },
-    goHome () {
-      this.$router.replace('/')
+    goLogin () {
+      this.$router.replace('/user/login')
     }
   }
 }

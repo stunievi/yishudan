@@ -5,6 +5,7 @@
       <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
       <!-- 版权 -->
       <!-- <Copy /> -->
+      <span>用户中心</span>
     </div>
     <div v-else-if="statu == 0">
       <!-- <span>网络错误</span> -->

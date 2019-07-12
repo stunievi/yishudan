@@ -4,9 +4,11 @@
     <!-- <Index class="ppp" msg='推荐书单'/> -->
     <div v-if="statu">
       <div class="cards">
-        <Card :padding="20" v-for="list in cate_list" :key= "list.id" class="card-box">
-          <h4>{{list.cate_name}}</h4>
-        </Card>
+        <div v-for="list in cate_list" :key= "list.id" @click='getSonCate(list.id)'>
+          <Card :padding="20" class="card-box" >
+            <h4>{{list.cate_name}}</h4>
+          </Card>
+        </div>
       </div>
     </div>
     <div v-else-if="!statu">
@@ -31,13 +33,22 @@ export default {
     }
   },
   mounted: function () {
-    this.getData.getData('/api/cateList').then(R => {
-      this.cate_list = R
-      this.statu = 1
-    }).catch(E => {
-      this.statu = 0
-      this.networkStatu = false
-    })
+    this.getCateList()
+  },
+  methods: {
+    getCateList: function (value = '') {
+      this.getData.getData('/api/cateList',value).then(R => {
+        this.cate_list = R
+        this.statu = 1
+      }).catch(E => {
+        this.statu = 0
+        this.networkStatu = false
+      })
+    },
+    getSonCate: function (id) {
+      console.log(id)
+      this.getCateList('?id=' + id)
+    }
   }
 }
 </script>

@@ -2,9 +2,9 @@ import Config from './config'
 
 var getData = {
   // to get ordinary data
-  getData: (path, data = null) => {
+  getData: (path, data = '') => {
     return new Promise((resolve, reject) => {
-      fetch(Config.Url + path, {
+      fetch(Config.Url + path + data, {
         headers: {
           'content-type': 'application/json'
           // 'Origin': 'http://127.0.0.1:8080/'

@@ -11,20 +11,20 @@
           </h4>
         </div>
         <div class="menu">
-          <Menu active-name="1" width="100%" >
+          <Menu :active-name="active" width="100%" >
             <MenuItem name="1" replace to="/">
                 <Icon type="md-document" />
                 首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页
             </MenuItem>
-            <MenuItem name="2" to="/recommendationlist">
+            <MenuItem name="recommendationlist" to="/recommendationlist">
                 <Icon type="md-chatbubbles" />
-                精品书单
+                推荐书单
             </MenuItem>
-            <MenuItem name="3" to="/homeitemthree">
+            <MenuItem name="homeitemthree" to="/homeitemthree">
                 <Icon type="md-heart" />
                 广而告之
             </MenuItem>
-            <MenuItem name="4" to="/homeitemfour">
+            <MenuItem name="homeitemfour" to="/homeitemfour">
                 <Icon type="md-leaf" />
                 下载专区
             </MenuItem>
@@ -39,6 +39,7 @@ export default {
   data () {
     return {
       // value2: false
+      active: this.$route.name
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="content-width" >
-    <div v-if="statu == 1">
+    <div v-if="statu">
       <BackTop></BackTop>
       <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
       <div class="banner">
         <!-- <Carousel class="banner-height"  v-model="value2" arrow="always" autoplay loop> -->
         <Carousel class="banner-height"   arrow="always" autoplay loop >
-          <CarouselItem v-for="list in datas.banner" :key='list'>
+          <CarouselItem v-for="list in datas.banner" :key='list.value'>
             <div class="demo-carousel">
               <!-- {{list}} -->
               <!-- <img alt="Vue logo" src="../../assets/logo.png"> -->
@@ -29,7 +29,7 @@
       </div>
       <Copy />
     </div>
-    <div v-else-if="statu == 0">
+    <div v-else-if="!statu">
       <!-- <span>网络错误</span> -->
       <Loading :type="networkStatu"/>
     </div>
@@ -75,6 +75,7 @@ export default {
 <style lang='scss'>
 .content-width{
   width:100%;
+  text-align: center;
   margin: 0 auto;
   @include desktop{
     padding:15px 15px 0 15px;

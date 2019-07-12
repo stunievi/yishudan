@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home/Home.vue'
-import Shudan from './views/other/Shudan.vue'
+// import Shudan from './views/other/Shudan.vue'
 import HomeTitleView from './views/frameworks/HomeTitleView.vue'
 import HomeContentView from './views/frameworks/HomeContentView.vue'
 // import Login from './views/Login.vue'
@@ -79,7 +79,17 @@ export default new Router({
         {
           name: 'searchresult',
           path: 'searchresult',
-          component: () => import('./views/other/Search.vue')
+          component: () => import('./views/other/SearchView.vue')
+          // children: [
+          //   {
+          //     path: '/',
+          //     redirect: '/SearchLeftItem'
+          //   },
+          //   {
+          //     path: '/SearchLeftItem',
+          //     component: () => import('./views/other/SearchLeftItem.vue')
+          //   }
+          // ]
         }
       ]
     },
@@ -90,11 +100,6 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/other/About.vue')
-    },
-    {
-      path: '/shudan',
-      name: 'shudan',
-      component: Shudan
     },
     {
       path: '/user',

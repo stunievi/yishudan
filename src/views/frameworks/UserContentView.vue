@@ -5,11 +5,14 @@
     </div>
     <div class="desktop-menu">
       <Affix :offset-top="64">
-        <!-- <div class="affix-logo-text">
+        <div class="affix-logo-user">
+          <div class="user-picture">
+            <img src="../../assets/logo.png" alt="">
+          </div>
           <h4>
-            书的海洋中为你导航
+            用户12312817
           </h4>
-        </div> -->
+        </div>
         <div class="menu">
           <Menu active-name="1" width="100%" >
             <MenuItem name="1" replace to="/userinfo">
@@ -27,6 +30,10 @@
             <MenuItem name="4" to="/Publish">
                 <Icon type="md-leaf" />
                 我要发表
+            </MenuItem>
+            <MenuItem name="5" to="/Publish">
+                <Icon type="md-leaf" />
+                上传图书
             </MenuItem>
           </Menu>
         </div>
@@ -46,6 +53,9 @@ export default {
 <style lang='scss'>
 .all-view-div{
   height:100%;
+  .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu){
+    background:#fff;
+  }
   .desktop-menu{
     display:none
   }
@@ -61,11 +71,22 @@ export default {
       display:unset;
       width:pxTorem(180px);
       margin-top:15px;
-      .affix-logo-text{
-        height: 64px;
+      .affix-logo-user{
+        // height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-flow: column;
+        border-right: 1.5px solid #dcdee2;
+        // padding:5px;
+        .user-picture{
+          display: flex;
+          width:pxTorem(60px);
+          height:pxTorem(60px);
+        }
+        h4{
+          padding:5px 0;
+        }
       }
       .menu{
         width:100%

@@ -2,9 +2,12 @@
   <div class="content-width" >
     <div v-if="statu == 1">
       <BackTop></BackTop>
-      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-      <!-- 版权 -->
-      <!-- <Copy /> -->
+      <div class="arti-list">
+        <!-- <img class="img-bacj" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560704626766&di=ec71603d2beb153959b1b2abfa5b3078&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ffa729e4ae720a1c4d50dd460e0aeddd76947e2d817b19-wZzuUO_fw658" alt=""> -->
+        <div class="arti-list-item">
+          <p>欢迎使用欢迎使用欢迎使用欢迎使用</p>
+        </div>
+      </div>
     </div>
     <div v-else-if="statu == 0">
       <!-- <span>网络错误</span> -->
@@ -57,99 +60,15 @@ export default {
     padding:15px 15px 0 15px;
     width:pxTorem(650px);
   }
-  .banner{
-    width:100%;
-    margin: 0 auto;
-    background:coral;
-    border-radius: 5px;
-    @include desktop{
-      width:pxTorem(620px);
-      height:pxTorem(250px);
-    }
-    height:pxTorem(150px);
-    .banner-height{
-      height:inherit;
-      .ivu-carousel-list{
-        border-radius: 5px;
-      }
-      .demo-carousel{
-        height:pxTorem(150px);
-        @include desktop{
-          width:pxTorem(620px);
-          height:pxTorem(250px);
-        }
-        img{
-          height:100%;
-        }
-      }
-    }
-  }
-  .articlelist{
-    margin-top:2px;
-    .anticle{
-      border-bottom: 1.5px solid #fff;
-      border-radius: 5px;
-      display: flex;
-      cursor:pointer;
-      padding: 0px 0;
-      height:pxTorem(100px);
+  .arti-list{
+    .arti-list-item{
+      // background:rgb(240,240,240);
+      border: 1px solid rgb(240,240,240);
       width:100%;
-      background: rgb(248,248,248);
-      @include desktop{
-        width:pxTorem(620px);
-        height:pxTorem(130px);
-        border-bottom: 1px solid #eee;
-        background:#fff;
-      }
-      justify-content: center;
-      .titlebox{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        margin-right:5px;
-        .title{
-          overflow: hidden;
-          // width: min-content;
-          text-align: left;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          margin:5px;
-          // display: flex;
-          color:#333;
-          font-weight: 700;
-          font-size:pxTorem(14px);
-          @include desktop{
-            font-size:pxTorem(16px);
-            font-weight: 700;
-          }
-        }
-        .profile{
-          overflow: hidden;
-          // text-overflow: ellipsis;
-          // white-space: nowrap;
-          color:#999;
-          height:pxTorem(40px);
-          line-height: 20px;
-          @include desktop{
-            height:pxTorem(56px);
-            line-height: 20px;
-          }
-        }
-      }
-      .pic{
-        align-self: center;
-        img{
-          @include desktop{
-            width:pxTorem(150px);
-            height:pxTorem(100px);
-          }
-          border-radius: 5px;
-          width:pxTorem(80px);
-          height:pxTorem(80px);
-        }
-      }
+      // height:100px;
+      border-radius:5px;
+      text-align: left;
+      padding:10px;
     }
   }
 }

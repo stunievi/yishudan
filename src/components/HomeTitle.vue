@@ -46,20 +46,20 @@
             <div class="drawer-menu">
               <Input class="title-child-input" search v-model="searchText" placeholder="搜索" @on-search="ToSearch(searchText)" size="small" />
               <div class="drawer-menu-allcontent" @click="toMenuItem(1)">
-                <Menu active-name="1" width="100%" >
+                <Menu :active-name="active" width="100%" >
                   <MenuItem name="1" replace to="/">
                       <Icon type="md-document" />
-                      首页
+                      首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页
                   </MenuItem>
-                  <MenuItem name="2" to="/mrecommendationlist">
+                  <MenuItem name="recommendationlist" to="/mrecommendationlist">
                       <Icon type="md-chatbubbles" />
-                      精品书单
+                      推荐书单
                   </MenuItem>
-                  <MenuItem name="3" to="/mhomeitemthree">
+                  <MenuItem name="homeitemthree" to="/mhomeitemthree">
                       <Icon type="md-heart" />
                       广而告之
                   </MenuItem>
-                  <MenuItem name="4" to="/mhomeitemfour">
+                  <MenuItem name="homeitemfour" to="/mhomeitemfour">
                       <Icon type="md-leaf" />
                       下载专区
                   </MenuItem>
@@ -82,15 +82,14 @@ export default {
       ages: this.GLOBAL.loginStatu,
       searchText: '',
       DrawerValue: false,
+      active: this.$route.name,
       // 登录状态代码
-      loginStatu: 0,
-      clicks: () => {
-        alert(123)
-      }
+      loginStatu: 0
     }
   },
   mounted: function () {
     this.loginStatu = localStorage.getItem('info') == null ? 0 : 1
+    // this.active = this.$route.name
   },
   methods: {
     ToUser () {
@@ -113,7 +112,7 @@ export default {
     ToSearch (T) {
       if (T !== '') {
         this.DrawerValue = false
-        this.$router.push({ name: 'searchresult' })
+        this.$router.push({ name: 'searchresult', query: { q: T } })
       }
     }
   }

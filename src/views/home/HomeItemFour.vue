@@ -28,11 +28,16 @@
                 <img class="book-pic" :src="list.book_pic" :alt="list.cate_name" >
                 <div class="book-title-pro">
                   <h4>{{list.book_name}} </h4>
-                  <h5>[{{list.short_name == null ? list.country_name :list.short_name}} {{list.author_name == null ? '未知' : list.author_name}}]</h5>
+                  <h5>{{list.short_name == null ? list.country_name == null ? '' : '[' + list.country_name + ']': '[' + list.short_name + ']'}} {{list.author_name == null ? '未知作者' : list.author_name}}</h5>
                   <span class="book-pro">{{list.book_profile}}</span>
                 </div>
               </div>
             </Card>
+          </div>
+          <div v-if="book_id != 0">
+            <Modal v-model="showBookInfo" fullscreen title="壹书单" footer-hide @on-visible-change="book_id = 0">
+              <BookInfo :id="book_id"/>
+            </Modal>
           </div>
           <div  style="margin-top:15px" v-if="cate_list.length == 0">
             <span>什么？这个分类下还没有图书？</span>
@@ -47,12 +52,12 @@
   </div>
 </template>
 <script>
-// import Index from '@/components/Index.vue'
+import BookInfo from '@/components/BookInfo.vue'
 export default {
   // name: 'shudan',
-  // components: {
-  //   Index
-  // },
+  components: {
+    BookInfo
+  },
   data () {
     return {
       // index: 0,
@@ -62,6 +67,8 @@ export default {
       cate_arr: [0],
       is_book_list: 0,
       list_len: 0,
+      book_id: 0,
+      showBookInfo: false,
       networkStatu: true
     }
   },
@@ -107,8 +114,16 @@ export default {
       }
     },
     // 进入图书详情页
-    getBookInfo: function () {
-
+    getBookInfo: function (id) {
+      // this.$Modal.confirm({
+      //   title: 'Title',
+      //   content: '<p>Content of dialog</p><p>Content of dialog</p>',
+      //   okText: 'OK',
+      //   cancelText: 'Cancel'
+      // });
+      this.book_id = id
+      this.showBookInfo = true
+      // this.$router.push({ name: 'bookinfo', params: { 'bookId': id } })
     }
   }
 }
@@ -129,10 +144,12 @@ $color: red;
         .book-pic{
           width:pxTorem(80px);
           height:pxTorem(110px);
+          align-self: center;
         }
         .book-title-pro{
           margin-left:10px;
           text-align: left;
+          width: 85%;
           .book-pro{
             display: block;
             margin-top:10px

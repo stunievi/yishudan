@@ -2,7 +2,7 @@
   <div class="content-width">
     <div class="book-title">
       <div class="book-pic-pro">
-        <img src="https://tse1-mm.cn.bing.net/th?id=OIP.eDlXDmViL5i3hPpvlvtkHwHaHa&w=209&h=209&c=8&rs=1&qlt=90&dpr=1.5&pid=3.1&rm=2" alt="" class="book-pic">
+        <img :src="list.book_pic" alt="" class="book-pic">
       </div>
       <div class="book-pro">
         <div>

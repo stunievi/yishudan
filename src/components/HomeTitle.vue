@@ -51,15 +51,15 @@
                       <Icon type="md-document" />
                       首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页
                   </MenuItem>
-                  <MenuItem name="recommendationlist" to="/mrecommendationlist">
+                  <MenuItem name="recommendationlist" to="/recommendationlist">
                       <Icon type="md-chatbubbles" />
                       推荐书单
                   </MenuItem>
-                  <MenuItem name="homeitemthree" to="/mhomeitemthree">
+                  <MenuItem name="adv" to="/adv">
                       <Icon type="md-heart" />
                       广而告之
                   </MenuItem>
-                  <MenuItem name="homeitemfour" to="/mhomeitemfour">
+                  <MenuItem name="downLoad_azw" to="/downLoad_azw">
                       <Icon type="md-leaf" />
                       下载专区
                   </MenuItem>

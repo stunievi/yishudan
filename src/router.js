@@ -24,12 +24,13 @@ export default new Router({
       children: [
         {
           path: '/',
+          redirect: '/home',
           component: HomeContentView,
           // pc 用户首页子页面
           children: [
             {
-              path: '/',
-              // name: '/',
+              path: '/home',
+              name: 'home',
               component: Home
             },
             {
@@ -41,40 +42,16 @@ export default new Router({
               // }
             },
             {
-              name: 'homeitemthree',
-              path: 'homeitemthree',
-              component: () => import('./views/home/HomeItemThree.vue')
+              name: 'adv',
+              path: 'adv',
+              component: () => import('./views/home/Advertisement.vue')
             },
             {
-              name: 'homeitemfour',
-              path: 'homeitemfour',
-              component: () => import('./views/home/HomeItemFour.vue')
+              name: 'downLoad_azw',
+              path: 'downLoad_azw',
+              component: () => import('./views/home/DownLoadAZW.vue')
             }
           ]
-        },
-        // mobile M首页
-        {
-          name: 'mrecommendationlist',
-          path: 'mrecommendationlist',
-          component: () => import('./views/home/RecommendationList.vue')
-        },
-        {
-          name: 'mhomeitemthree',
-          path: 'mhomeitemthree',
-          component: () => import('./views/home/HomeItemThree.vue')
-        },
-        {
-          name: 'mhomeitemfour',
-          path: 'mhomeitemfour',
-          component: () => import('./views/home/HomeItemFour.vue')
-        },
-        {
-          name: 'articledetail',
-          path: 'articledetail',
-          component: () => import('./views/article/ArticleDetail.vue')
-          // redirect: {
-          //   name: 'recommendationlist'
-          // }
         },
         {
           name: 'searchresult',
@@ -100,6 +77,11 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/other/About.vue')
+    },
+    {
+      name: 'articledetail',
+      path: '/articledetail/:articleId',
+      component: () => import('./views/article/ArticleDetail.vue')
     },
     {
       path: '/user',

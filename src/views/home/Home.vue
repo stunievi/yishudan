@@ -16,16 +16,18 @@
         </Carousel>
       </div>
       <div class="articlelist">
-        <div class="anticle" v-for="artlist in datas.articlelist" :key='artlist.id' @click="toArtisanDetail(artlist.article_id)">
-          <div class="titlebox">
-            <a class="title">{{artlist.title}}！</a>
-            <span class="profile">Lady Gaga一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及a一直以奇装异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华异服以及无与伦比的音乐才华受世人所知，日前更凭借《一个明星的诞生》的插曲《Shallow》拿到了她人生中的第一个奥斯
-            </span>
-          </div>
-          <div class="pic" v-if="artlist.img != 'none'">
-            <img :src='artlist.img'/>
-          </div>
+        <router-link  v-for="artlist in datas.articlelist" :key='artlist.id' :to="'/articledetail/' + artlist.article_id">
+        <div class="anticle">
+            <div class="titlebox">
+              <a class="title">{{artlist.title}}</a>
+              <span class="profile">{{artlist.profile}}
+              </span>
+            </div>
+            <div class="pic" v-if="artlist.profile_picture">
+              <img :src='artlist.profile_picture'/>
+            </div>
         </div>
+        </router-link>
       </div>
       <Copy />
     </div>
@@ -43,11 +45,7 @@ export default {
     return {
       statu: 0,
       networkStatu: true,
-      datas: [],
-      toArtisanDetail: (articleId) => {
-        // console.log(articleId)
-        this.$router.push({ name: 'articledetail', params: { 'articleId': articleId } })
-      }
+      datas: []
     }
   },
   components: {
@@ -110,19 +108,20 @@ export default {
   }
   .articlelist{
     margin-top:2px;
+    background: rgb(250,250,250);
     .anticle{
-      border-bottom: 1.5px solid #fff;
+      border-top: 4px solid rgb(250,250,250);
       border-radius: 5px;
       display: flex;
       cursor:pointer;
       padding: 0px 0;
       height:pxTorem(100px);
       width:100%;
-      background: rgb(248,248,248);
+      background: #ffffff;
       @include desktop{
         width:pxTorem(620px);
         height:pxTorem(130px);
-        border-bottom: 1px solid #eee;
+        border-top: 1px solid rgb(250,250,250);
         background:#fff;
       }
       justify-content: center;
@@ -130,16 +129,18 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         display: flex;
+        width:100%;
         flex-flow: column;
         justify-content: center;
         margin-right:5px;
+        padding: 10px;
         .title{
           overflow: hidden;
           // width: min-content;
           text-align: left;
           text-overflow: ellipsis;
           white-space: nowrap;
-          margin:5px;
+          margin:5px 5px 5px 0px;
           // display: flex;
           color:#333;
           font-weight: 700;
@@ -151,6 +152,7 @@ export default {
         }
         .profile{
           overflow: hidden;
+          text-align: left;
           // text-overflow: ellipsis;
           // white-space: nowrap;
           color:#999;

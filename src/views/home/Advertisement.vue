@@ -1,7 +1,7 @@
 <template>
   <div class="content-width">
     <!-- <img alt="Vue logok" src="../assets/logo.png"> -->
-    <Index class="ppp" msg='推荐书单'/>
+    <Index class="ppp" msg='广而告之'/>
   </div>
 </template>
 <script>

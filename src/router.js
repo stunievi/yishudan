@@ -67,6 +67,11 @@ export default new Router({
           //     component: () => import('./views/other/SearchLeftItem.vue')
           //   }
           // ]
+        },
+        {
+          name: 'articledetail',
+          path: '/articledetail/:articleId',
+          component: () => import('./views/article/ArticleDetail.vue')
         }
       ]
     },
@@ -77,11 +82,6 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/other/About.vue')
-    },
-    {
-      name: 'articledetail',
-      path: '/articledetail/:articleId',
-      component: () => import('./views/article/ArticleDetail.vue')
     },
     {
       path: '/user',

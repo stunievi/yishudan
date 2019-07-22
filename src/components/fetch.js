@@ -1,5 +1,4 @@
 import Config from './config'
-import { promised } from 'q';
 
 var getData = {
   // to get ordinary data

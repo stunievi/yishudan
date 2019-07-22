@@ -1,5 +1,5 @@
 <template>
-<Affix class="title-fix">
+<Affix class="title-fix ">
   <div class="title">
     <div id="navt">
       <div class="navt-container">
@@ -8,12 +8,9 @@
         </div>
         <div class="title-menulist">
           <a href="/">
-            <h3>壹书单</h3>
+            <h3><span>壹</span>书单</h3>
           </a>
         </div>
-        <!-- <div class="title-menulist">
-          <h3>壹书单</h3>
-        </div> -->
         <div class="title-child-logo-search">
           <div class="title-child-logo-search-content">
             <Input class="title-child-input" v-model="searchText"  search placeholder="搜索"  @on-search="ToSearch(searchText)" size="small" />
@@ -40,7 +37,7 @@
         <Drawer placement="left" :closable="false" v-model="DrawerValue">
           <div class="title-drawer">
             <div class="drawer-logo-position">
-              <h2>壹书单</h2>
+              <h2><span>壹</span>书单</h2>
               <span>书的海洋中为你导航</span>
             </div>
             <div class="drawer-menu">
@@ -119,8 +116,10 @@ export default {
 }
 </script>
 <style lang='scss'>
+  @import url('https://fonts.font.im/css?family=ZCOOL+XiaoWei&display=swap');
 .title-fix{
-  padding: 0 5px 0 5px;
+  width:100% !important;
+  padding: 0 0 0 0 !important;
   .ivu-affix{
     z-index: 99;
   }
@@ -135,7 +134,7 @@ export default {
   align-items: center;
   justify-content: center;
   .navt-container{
-    width:$container;
+    width:100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -146,7 +145,16 @@ export default {
     .title-menulist{
         // min-width:350px;
         a{
-          color:#333
+          color:#3194d0;
+          // color:#333;
+          h3{
+            // color:#D35172;
+            font-family: 'ZCOOL XiaoWei', serif;
+            span{
+              color:#d0664c;
+            }
+            font-size:pxTorem(20px);
+          }
         }
       }
     .title-child-logo-search{

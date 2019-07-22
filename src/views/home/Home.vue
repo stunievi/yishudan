@@ -16,7 +16,7 @@
         </Carousel>
       </div>
       <div class="articlelist">
-        <router-link  v-for="artlist in datas.articlelist" :key='artlist.id' :to="'/articledetail/' + artlist.article_id">
+        <router-link  v-for="artlist in datas.articlelist" :key='artlist.id' :to="'/articledetail/' + artlist.id">
         <div class="anticle">
             <div class="titlebox">
               <a class="title">{{artlist.title}}</a>

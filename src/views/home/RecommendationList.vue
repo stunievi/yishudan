@@ -3,7 +3,7 @@
     <div v-if="statu">
       <BackTop></BackTop>
       <div class="articlelist">
-        <div class="anticle" v-for="artlist in datas" :key='artlist.id' @click="toArtisanDetail(artlist.article_id)">
+        <div class="anticle" v-for="artlist in datas" :key='artlist.id' @click="toArtisanDetail(artlist.id)">
           <div class="titlebox">
             <a class="title">{{artlist.title}}</a>
             <span class="profile">{{artlist.profile}}

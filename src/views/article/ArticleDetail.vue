@@ -1,36 +1,56 @@
 <template>
   <div class="container">
-    <div class="title-box">
-      <h1>中年夫妻离婚后，谁更受伤，听听这3位人离婚夫妻自述</h1>
-    </div>
-    <div class="article-admin-user">
-      <img class="user-pic" src= "../../assets/logo.png" >
-      <div class="article-info">
-        <div class="user-name">
-          <span>用户名{{id}}</span>
-        </div>
-        <div class="article-data">
-          <span>2019.02.24 22:45 字数 806 阅读 1668评论 6喜欢 </span>
+    <div v-if="statu">
+      <div class="title-box">
+        <h1>{{data.title}}</h1>
+      </div>
+      <div class="article-admin-user">
+        <img class="user-pic" src= "../../assets/logo.png" >
+        <div class="article-info">
+          <div class="user-name">
+            <h3>{{data.name}}</h3>
+          </div>
+          <div class="article-data">
+            <span>{{data.updated_at == null ? data.created_at : data.updated_at}} 阅读 {{data.reads}} 评论 6</span>
+          </div>
         </div>
       </div>
+      <div class="content">
+          <!-- <Divider /> -->
+          <div class="article_content">
+            <div v-html="data.content">
+            </div>
+          </div>
+        </div>
+    </div>
+    <div v-else-if="!statu">
+      <!-- <span>网络错误</span> -->
+      <Loading :type="networkStatu"/>
     </div>
   </div>
 </template>
 <script>
+// this里面没有全局变量 所以引入（无头绪）
+import fetch from '../../components/fetch'
 export default {
   data () {
     return {
-      id: this.$route.params.articleId
+      statu: 0,
+      networkStatu: true,
+      id: this.$route.params.articleId,
+      data: []
     }
   },
   methods: {
     detail: function () {
-      console.log(this)
-      // this.getData('/api/article_detail').then(R => {
-      //   console.log(R)
-      // }).catch(E => {
-
-      // })
+      // console.log(getData)
+      fetch.getData('/api/article_detail','?id=' + this.id).then(R => {
+        this.data = R
+        this.statu = 1
+      }).catch(E => {
+        this.statu = 0
+        this.networkStatu = false
+      })
     }
   },
   mounted: function () {
@@ -42,34 +62,61 @@ export default {
   .container{
     width:100%;
     margin: 0 auto;
+    text-align: center;
+    padding:15px 15px 0 15px;
     @include desktop{
-      padding:15px 15px 0 15px;
       width:pxTorem(650px);
     }
     .title-box{
       display: flex;
-      margin-bottom: 15px;
       h1{
-        font-weight: lighter;
+        // font-weight: lighter;
       }
     }
     .article-admin-user{
       // padding: 0 15px;
       display: flex;
+      margin-top:20px;
+      align-items: center;
+      margin-bottom: 25px;
+      @include desktop{
+        margin-bottom: 40px;
+        margin-top:30px;
+      }
       .user-pic{
-        width:pxTorem(36px);
-        height:pxTorem(36px);
+        width:pxTorem(45px);
+        height:pxTorem(45px);
+        @include desktop{
+          width:pxTorem(50px);
+          height:pxTorem(50px);
+        }
         border:1px solid #e9e9e9;
-        border-radius: 18px;
+        border-radius: 28px;
       }
       .article-info{
         padding-left: 10px;
+        text-align: left;
         .user-name{
           text-align:left;
+          h3{
+            font-weight: lighter;
+            font-size: pxTorem(14px);
+            @include desktop{
+              font-size: pxTorem(16px);
+            }
+            margin-bottom:2px
+          }
         }
         .article-data{
-
+          span{
+            color:rgb(160,160,160)
+          }
         }
+      }
+    }
+    .content{
+      text-align:left;
+      .article_content{
       }
     }
   }

@@ -1,33 +1,50 @@
 <template>
 <Affix class="title-fix">
   <div class="title">
-    <div id="navt">
+    <div class="navt">
       <div class="navt-container">
         <div class="title-drawer-icon">
           <Icon  type="ios-menu" size='24' @click="DrawerValue = true"/>
         </div>
         <div class="title-menulist">
           <a href="/">
-            <h3>用户中心</h3>
+            <h3><span>壹</span>书单</h3>
           </a>
         </div>
-        <!-- <div class="title-menulist">
-          <h3>壹书单</h3>
-        </div> -->
         <div class="title-child-logo-search">
-          <div @click='toExit()' class="user-login-info">
+          <div class="title-child-logo-search-content">
+            <Input class="title-child-input" v-model="searchText"  search placeholder="搜索"  @on-search="ToSearch(searchText)" size="small" />
+          </div>
+          <div class="user-login-info">
             <div v-if="!loginStatu" class="title-drawer-icon">
               <Icon type="md-person" size='24' />
             </div>
-            <div >
-              <a class="title-lg-rgs">
-                <span >
-                  退出
+            <div v-if="loginStatu" class="user-info">
+              <Dropdown placement="bottom-end">
+                <div  @click="ToUser()" class="user-pic">
+                  <img src= "../assets/logo.png" >
+                </div>
+                <DropdownMenu slot="list">
+                  <router-link to="/user/center/userinfo"><DropdownItem >个人中心</DropdownItem></router-link>
+                  <router-link to="/"><DropdownItem >我的消息</DropdownItem></router-link>
+                  <router-link to="/user/center/ArtiManage"><DropdownItem>文章管理</DropdownItem></router-link>
+                  <router-link to="/user/center/Collage"><DropdownItem >我的收藏</DropdownItem></router-link>
+                  <router-link to="/user/center/Publish"><DropdownItem>我要发表</DropdownItem></router-link>
+                  <router-link to="/ "><DropdownItem divided>退出</DropdownItem></router-link>
+                  <!-- <DropdownItem divided>帮助反馈</DropdownItem> -->
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+            <div v-else class="user-pc">
+              <router-link to="/login" class="title-lg-rgs">
+                <span>
+                  登录 / 注册
                 </span>
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
+        <!-- 抽屉 -->
         <Drawer placement="left" :closable="false" v-model="DrawerValue">
           <div class="title-drawer">
             <div class="drawer-logo-position">
@@ -37,19 +54,19 @@
             <div class="drawer-menu">
               <div class="drawer-menu-allcontent" @click="toMenuItem(1)">
                 <Menu active-name="1" width="100%" >
-                  <MenuItem name="1" replace to="/userinfo">
+                  <MenuItem name="1" replace to="/user/center/userinfo">
                       <Icon type="md-document" />
                       个人信息
                   </MenuItem>
-                  <MenuItem name="2" to="/MArtiManage">
+                  <MenuItem name="2" to="/user/center/ArtiManage">
                       <Icon type="md-chatbubbles" />
                       文章管理
                   </MenuItem>
-                  <MenuItem name="3" to="/MCollage">
+                  <MenuItem name="3" to="/user/center/Collage">
                       <Icon type="md-heart" />
                       我的收藏
                   </MenuItem>
-                  <MenuItem name="4" to="/MPublish">
+                  <MenuItem name="4" to="/user/center/Publish">
                     <Icon type="md-leaf" />
                     我要发表
                   </MenuItem>
@@ -72,6 +89,7 @@ export default {
       DrawerValue: false,
       // 登录状态代码
       loginStatu: localStorage.getItem('info') == null ? 0 : 1,
+      searchText: '',
       clicks: () => {
         alert(123)
       }
@@ -99,6 +117,12 @@ export default {
       localStorage.removeItem('info')
       this.$Message.success('退出')
       this.$router.replace('/')
+    },
+    ToSearch (T) {
+      if (T !== '') {
+        this.DrawerValue = false
+        this.$router.push({ name: 'searchresult', query: { q: T } })
+      }
     }
   }
 }
@@ -110,7 +134,7 @@ export default {
     z-index: 99;
   }
 }
-#navt {
+.navt {
   height: $headerHeight;
   background: #fff;
   border-bottom: 1px #f9f9f9 solid;
@@ -120,27 +144,54 @@ export default {
   align-items: center;
   justify-content: center;
   .navt-container{
-    width:$container;
+    width:100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     .title-lg-rgs{
-      display:flex;
-        border: 1px solid #3194d0;
-        color:#3194d0;
-        padding:5px 10px;
-        border-radius:16px;
-        span{
-          font-size:pxTorem(14px)
-        }
+      display:none
       //#9adcd1
     }
     .title-menulist{
         // min-width:350px;
         a{
-          color:#333
+          // color:#3194d0;
+          color:#333;
+          h3{
+            // color:#D35172;
+            font-family: 'ZCOOL XiaoWei', serif;
+            span{
+              color:#d0664c;
+            }
+            font-size:pxTorem(20px);
+          }
         }
       }
+    .title-child-logo-search{
+      .title-child-logo-search-content{
+        display:none;
+      }
+      .user-login-info{
+        .user-pc{
+          display:none
+        }
+        @include desktop {
+          .user-pc{
+            display:flex
+          }
+        }
+        .user-info{
+          .user-pic{
+            display:flex;
+            cursor: pointer;
+            img{
+              width:pxTorem(32px);
+              height:pxTorem(32px);
+            }
+          }
+        }
+      }
+    }
     @include desktop {
       .title-drawer,.title-drawer-icon{
         display:none
@@ -149,6 +200,61 @@ export default {
         // min-width:350px;
         a{
           color:#333
+        }
+      }
+      .title-child-logo-search{
+        display:flex;
+        align-items: center;
+        // width: 50%;
+        justify-content: flex-end;
+        .user-login-info{
+          height:40px;
+          display: flex;
+          align-items: center;
+          .user-info{
+            height:100%;
+            width:100%;
+            display:flex;
+            align-items:center;
+            .user-pic{
+              display:flex;
+              img{
+                border: 1px solid #f9f9f9;
+                border-radius:16px;
+                width:pxTorem(32px);
+                height:pxTorem(32px);
+              }
+            }
+            .user-name{
+              font-size:pxTorem(14px);
+            }
+          }
+        }
+        .title-child-logo-search-content{
+          display:flex;
+          align-items: center;
+          // width:50%;
+          max-width:pxTorem(240px);
+          .title-child-input{
+            margin-right:10%;
+            width:pxTorem(200px);
+            display:flex;
+            align-items: center;
+            width:100%;
+            input{
+              border-radius: 16px;
+              height:pxTorem(32px);
+              padding-left: 15px
+            }
+            i{
+              font-size:pxTorem(16px);
+              margin-right:5px;
+              border: 1px solid #d9d9d9;
+              border-radius: 16px;
+              background: #d9d9d9;
+              color: #fff;
+            }
+          }
         }
       }
       .title-lg-rgs{

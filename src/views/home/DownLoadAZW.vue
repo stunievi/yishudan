@@ -5,13 +5,13 @@
     <div v-if="statu">
       <div class="cards">
         <!-- 分类id不为零显示返回 -->
-        <div v-if="cate_id" @click="backButton()">
+        <!-- <div v-if="cate_id" @click="backButton()"> -->
           <!-- <Button shape="circle"><Icon type="md-arrow-back" size="20"/></Button> -->
-          <Card  class="card-box" >
+          <!-- <Card  class="card-box" > -->
             <!-- <h4>返回</h4> -->
-            <Icon type="md-arrow-back" size="24"/>
+            <!-- <Icon type="md-arrow-back" size="24"/>
           </Card>
-        </div>
+        </div> -->
         <!-- 分类 -->
         <div v-if="!is_book_list">
           <div v-for="list in cate_list" :key= "list.id" @click='getSonCate(list.id)'>
@@ -22,9 +22,9 @@
         </div>
         <!-- 图书列表 -->
         <div v-else>
-          <div v-for="list in cate_list" :key= "list.id" @click='getBookInfo(list.id)'>
+          <div v-for="list in cate_list" :key= "list.id" @click="toBookDetail(list.id)">
             <Card :padding="10" class="card-box" >
-              <div class="book-list">
+              <div class="book-list" >
                 <img class="book-pic" :src="list.book_pic" :alt="list.cate_name" >
                 <div class="book-title-pro">
                   <h4>{{list.book_name}} </h4>
@@ -34,11 +34,11 @@
               </div>
             </Card>
           </div>
-          <div v-if="book_id != 0">
+          <!-- <div v-if="book_id != 0">
             <Modal v-model="showBookInfo" fullscreen title="壹书单" footer-hide @on-visible-change="book_id = 0">
               <BookInfo :id="book_id"/>
             </Modal>
-          </div>
+          </div> -->
           <div  style="margin-top:15px" v-if="cate_list.length == 0">
             <span>什么？这个分类下还没有图书？</span>
           </div>
@@ -52,32 +52,36 @@
   </div>
 </template>
 <script>
-import BookInfo from '@/components/BookInfo.vue'
+// import BookInfo from '@/components/BookInfo.vue'
 export default {
   // name: 'shudan',
-  components: {
-    BookInfo
-  },
+  // components: {
+  //   BookInfo
+  // },
   data () {
     return {
       // index: 0,
       cate_list: [],
       statu: 0,
-      cate_id: 0,
+      cate_id: this.$route.params.cateId == null ? 0 : this.$route.params.cateId,
       cate_arr: [0],
       is_book_list: 0,
       list_len: 0,
-      book_id: 0,
-      showBookInfo: false,
       networkStatu: true
     }
   },
   mounted: function () {
+    // console.log(this.$route.params.cateId);
     this.getCateList()
   },
+  watch: {
+    // 监听路由参数发生变化，重新加载页面
+    "$route": "getCateList"
+  },
   methods: {
-    getCateList: function (value = '') {
-      this.getData.getData('/api/cateList', value).then(R => {
+    getCateList: function () {
+      // console.log(this.$route.params.cateId)
+      this.getData.getData('/api/cateList', '?id=' + this.$route.params.cateId).then(R => {
         if (R[R.length - 1].is_book_list === 1) {
           R.pop()
           this.cate_list = R
@@ -95,10 +99,12 @@ export default {
     },
     getSonCate: function (id) {
       // console.log(id)
-      this.cate_id = id
-      // 后退数组
-      this.cate_arr.push(id)
-      this.getCateList('?id=' + id)
+      // this.cate_id = id
+      // // 后退数组
+      // this.cate_arr.push(id)
+      // this.getCateList('?id=' + id)
+      // console.log(id)
+      this.$router.push({ name: 'downLoad_azw', params: { 'cateId': id } })
     },
     // 每前进一步数组追加分类id，后退一步数组删除一位
     // 然后根据数组最后一位分类id查询展示分类。
@@ -113,17 +119,8 @@ export default {
         this.getCateList('?id=' + len)
       }
     },
-    // 进入图书详情页
-    getBookInfo: function (id) {
-      // this.$Modal.confirm({
-      //   title: 'Title',
-      //   content: '<p>Content of dialog</p><p>Content of dialog</p>',
-      //   okText: 'OK',
-      //   cancelText: 'Cancel'
-      // });
-      this.book_id = id
-      this.showBookInfo = true
-      // this.$router.push({ name: 'bookinfo', params: { 'bookId': id } })
+    toBookDetail: function (id) {
+      this.$router.push({ name: 'bookdetail', params: { 'bookId': id } })
     }
   }
 }
@@ -141,6 +138,7 @@ $color: red;
       margin-top:10px;
       .book-list{
         display: flex;
+        color:#333;
         .book-pic{
           width:pxTorem(80px);
           height:pxTorem(110px);

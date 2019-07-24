@@ -23,7 +23,7 @@
       </div>
       <div class="lg-footer">
         <div>
-          <Button class="lg-button lg-register" type="primary" to="/user/register">注册</Button>
+          <Button class="lg-button lg-register" type="primary" to="/register">注册</Button>
         </div>
         <div class="lg-extra">
           <span class="lg-extra-title">

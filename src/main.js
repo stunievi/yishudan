@@ -33,3 +33,25 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+var isLogin = localStorage.getItem('info') == null ? 1 : 0
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(T => T.meta.requiresAuth)) {
+    if (isLogin) {
+      next('/login')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+router.onReady((to) => {
+  if (to !== undefined) {
+    if (to.matched.some(T => T.meta.requiresAuth)) {
+      // console.log('需要登录')
+      if (isLogin) {
+        router.replace({ path: '/login' })
+      }
+    }
+  }
+})

@@ -27,7 +27,7 @@
       </div>
       <div class="lg-footer">
         <div>
-          <Button class="lg-button lg-register" type="primary" >登录</Button>
+          <Button class="lg-button lg-register" type="primary"  to="/login">登录</Button>
           <!-- <Button class="lg-button lg-register" type="primary" @click="register('formInline')">注册</Button> -->
         </div>
         <div class="lg-extra">

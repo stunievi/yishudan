@@ -24,7 +24,7 @@
                 <Icon type="md-heart" />
                 广而告之
             </MenuItem>
-            <MenuItem name="downLoad_azw" to="/downLoad_azw">
+            <MenuItem name="downLoad_azw" to="/downLoad_azw/0">
                 <Icon type="md-leaf" />
                 下载专区
             </MenuItem>

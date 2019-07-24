@@ -14,6 +14,7 @@ Vue.use(Router)
 //     <router-view />
 //   </div>`
 // }
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -24,12 +25,12 @@ export default new Router({
       children: [
         {
           path: '/',
-          redirect: '/home',
+          redirect: 'home',
           component: HomeContentView,
           // pc 用户首页子页面
           children: [
             {
-              path: '/home',
+              path: 'home',
               name: 'home',
               component: Home
             },
@@ -48,7 +49,7 @@ export default new Router({
             },
             {
               name: 'downLoad_azw',
-              path: 'downLoad_azw',
+              path: 'downLoad_azw/:cateId',
               component: () => import('./views/home/DownLoadAZW.vue')
             }
           ]
@@ -72,80 +73,103 @@ export default new Router({
           name: 'articledetail',
           path: '/articledetail/:articleId',
           component: () => import('./views/article/ArticleDetail.vue')
+        },
+        {
+          name: 'bookdetail',
+          path: '/bookdetail/:bookId',
+          component: () => import('./views/other/BookInfo.vue')
         }
       ]
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/other/About.vue')
+      // 登陆检查
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/user/Login.vue')
+    },
+    {
+      // 登陆检查
+      path: '/register',
+      name: 'register',
+      component: () => import('./views/user/Register.vue')
     },
     {
       path: '/user',
       name: 'user',
+      meta: { requiresAuth: true },
       component: () => import('./views/frameworks/UserLoginStatu.vue'),
       children: [
         {
-          // 登陆检查
-          path: 'login',
-          name: 'login',
-          component: () => import('./views/user/Login.vue')
-        },
-        {
-          // 登陆检查
-          path: 'register',
-          name: 'register',
-          component: () => import('./views/user/Register.vue')
-        },
-        {
-          // 登陆检查
-          path: 'home',
+          // 用户中心
+          path: 'center',
+          meta: { requiresAuth: true },
           component: () => import('./views/frameworks/UserTitleView.vue'),
           children: [
             {
               path: '/',
-              component: () => import('./views/frameworks/UserContentView.vue'),
-              // 用户后台子页面
-              children: [
-                {
-                  path: '/',
-                  redirect: '/userinfo'
-                },
-                {
-                  path: '/userinfo',
-                  component: () => import('./views/user/UserInfo.vue')
-                },
-                {
-                  path: '/Collage',
-                  component: () => import('./views/user/Collage.vue')
-                },
-                {
-                  path: '/ArtiManage',
-                  component: () => import('./views/user/ArtiManage.vue')
-                },
-                {
-                  path: '/Publish',
-                  component: () => import('./views/user/Publish.vue')
-                }
-              ]
+              redirect: 'userinfo'
             },
             {
-              path: '/MCollage',
+              path: 'userinfo',
+              name: 'userinfo',
+              meta: { requiresAuth: true },
+              component: () => import('./views/user/UserInfo.vue')
+            },
+            {
+              path: 'Collage',
+              name: 'Collage',
+              meta: { requiresAuth: true },
               component: () => import('./views/user/Collage.vue')
             },
             {
-              path: '/MArtiManage',
+              path: 'ArtiManage',
+              name: 'ArtiManage',
+              meta: { requiresAuth: true },
               component: () => import('./views/user/ArtiManage.vue')
             },
             {
-              path: '/MPublish',
+              path: 'Publish',
+              name: 'Publish',
+              meta: { requiresAuth: true },
               component: () => import('./views/user/Publish.vue')
             }
           ]
         }
+        // {
+        //   // 登陆检查
+        //   path: 'center',
+        //   name: 'home',
+        //   component: () => import('./views/frameworks/UserTitleView.vue'),
+        //   children: [
+        //     {
+        //       path: '/',
+        //       component: () => import('./views/frameworks/UserContentView.vue'),
+        //       // 用户后台子页面
+        //       children: [
+        //         {
+        //           path: '/',
+        //           redirect: '/userinfo'
+        //         },
+        //         {
+        //           path: '/userinfo',
+        //           component: () => import('./views/user/UserInfo.vue')
+        //         },
+        //         {
+        //           path: '/Collage',
+        //           component: () => import('./views/user/Collage.vue')
+        //         },
+        //         {
+        //           path: '/ArtiManage',
+        //           component: () => import('./views/user/ArtiManage.vue')
+        //         },
+        //         {
+        //           path: '/Publish',
+        //           component: () => import('./views/user/Publish.vue')
+        //         }
+        //       ]
+        //     }
+        //   ]
+        // }
       ]
     }
   ]

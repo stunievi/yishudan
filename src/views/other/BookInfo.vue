@@ -60,7 +60,7 @@
   </div>
 </template>
 <script>
-import Config from './config'
+import Config from '../../components/config'
 export default {
   props: {
     id: Intl
@@ -73,7 +73,7 @@ export default {
       book_info: [],
       networkStatu: true,
       upload_model: false,
-      url: Config.Url + '/api/uploadAZW'
+      url:  Config.Url + '/api/uploadAZW'
     }
   },
   methods: {
@@ -81,7 +81,6 @@ export default {
       this.modal = true
     },
     feedBack: function () {
-      // console.log(123)
       if (this.value1 !== '' || this.value1 !== '') {
         this.getData.postData('/api/getFeedBack', 'book_id=' + this.id + '&feed_back_info=' + this.value1).then(R => {
           console.log(R)
@@ -95,7 +94,7 @@ export default {
     },
     download: function () {
       // console.log( Config.Download + '/downloadAZW?book_id=' + this.id)
-      window.location.href = Config.Download + '/downloadAZW?book_id=' + this.id
+      window.location.href = Config.Url + '/downloadAZW?book_id=' + this.$route.params.bookId
     },
     uploadFile: function () {
       this.upload_model = 1
@@ -105,7 +104,7 @@ export default {
     }
   },
   mounted: function () {
-    this.getData.getData('/api/showBookInfo', '?book_id=' + this.id).then(R => {
+    this.getData.getData('/api/showBookInfo', '?book_id=' + this.$route.params.bookId ).then(R => {
       this.statu = 1
       this.book_info = R[0]
     }).catch(E => {

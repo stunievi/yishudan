@@ -18,12 +18,7 @@ export default {
   },
   created () {
     // 待修改
-    let isLogin = localStorage.getItem('true') == null ? 0 : 1
-    if (isLogin) {
-      this.$router.replace({ path: '/user/home', params: { userId: '123' } })
-    } else {
-      this.$router.replace({ name: 'login', params: { userId: '123' } })
-    }
+
   }
 }
 </script>

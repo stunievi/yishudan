@@ -15,21 +15,32 @@
           <div class="title-child-logo-search-content">
             <Input class="title-child-input" v-model="searchText"  search placeholder="搜索"  @on-search="ToSearch(searchText)" size="small" />
           </div>
-          <div @click="ToUser()" class="user-login-info">
+          <div class="user-login-info">
             <div v-if="!loginStatu" class="title-drawer-icon">
               <Icon type="md-person" size='24' />
             </div>
             <div v-if="loginStatu" class="user-info">
-              <div class="user-pic">
-                <img src= "../assets/logo.png" >
-              </div>
+              <Dropdown placement="bottom-end">
+                <div  @click="ToUser()" class="user-pic">
+                  <img src= "../assets/logo.png" >
+                </div>
+                <DropdownMenu slot="list">
+                  <router-link to="/user/center/userinfo"><DropdownItem >个人中心</DropdownItem></router-link>
+                  <router-link to="/"><DropdownItem >我的消息</DropdownItem></router-link>
+                  <router-link to="/user/center/ArtiManage"><DropdownItem>文章管理</DropdownItem></router-link>
+                  <router-link to="/user/center/Collage"><DropdownItem >我的收藏</DropdownItem></router-link>
+                  <router-link to="/user/center/Publish"><DropdownItem>我要发表</DropdownItem></router-link>
+                  <router-link to="/ "><DropdownItem divided>退出</DropdownItem></router-link>
+                  <!-- <DropdownItem divided>帮助反馈</DropdownItem> -->
+                </DropdownMenu>
+              </Dropdown>
             </div>
             <div v-else class="user-pc">
-              <a class="title-lg-rgs">
+              <router-link to="/login" class="title-lg-rgs">
                 <span>
                   登录 / 注册
                 </span>
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
@@ -56,7 +67,7 @@
                       <Icon type="md-heart" />
                       广而告之
                   </MenuItem>
-                  <MenuItem name="downLoad_azw" to="/downLoad_azw">
+                  <MenuItem name="downLoad_azw" to="/downLoad_azw/0">
                       <Icon type="md-leaf" />
                       下载专区
                   </MenuItem>
@@ -92,7 +103,7 @@ export default {
     ToUser () {
       // 检测用户是否登录
       // 待修改
-      this.$router.push({ name: 'user', params: { userId: '123' } })
+      this.$router.push({ path: 'user/center/userinfo', params: { userId: '123' } })
     },
     toMenuItem ($itemNo) {
       // alert(2)
@@ -121,7 +132,12 @@ export default {
   width:100% !important;
   padding: 0 0 0 0 !important;
   .ivu-affix{
-    z-index: 99;
+    
+  }
+}
+.all-view-div{
+  .ivu-menu{
+    z-index: 99 !important;
   }
 }
 #navt {
@@ -145,8 +161,8 @@ export default {
     .title-menulist{
         // min-width:350px;
         a{
-          color:#3194d0;
-          // color:#333;
+          // color:#3194d0;
+          color:#333;
           h3{
             // color:#D35172;
             font-family: 'ZCOOL XiaoWei', serif;
@@ -195,7 +211,7 @@ export default {
       .title-child-logo-search{
         display:flex;
         align-items: center;
-        width: 50%;
+        // width: 50%;
         justify-content: flex-end;
         .user-login-info{
           height:40px;
@@ -223,7 +239,7 @@ export default {
         .title-child-logo-search-content{
           display:flex;
           align-items: center;
-          width:50%;
+          // width:50%;
           max-width:pxTorem(240px);
           .title-child-input{
             margin-right:10%;

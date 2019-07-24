@@ -17,7 +17,9 @@
           </div>
           <div class="user-login-info">
             <div v-if="!loginStatu" class="title-drawer-icon">
-              <Icon type="md-person" size='24' />
+              <router-link to="/login" class="person-icon">
+                <Icon type="md-person" size='24' color="#333"/>
+              </router-link>
             </div>
             <div v-if="loginStatu" class="user-info">
               <Dropdown placement="bottom-end">
@@ -30,7 +32,7 @@
                   <router-link to="/user/center/ArtiManage"><DropdownItem>文章管理</DropdownItem></router-link>
                   <router-link to="/user/center/Collage"><DropdownItem >我的收藏</DropdownItem></router-link>
                   <router-link to="/user/center/Publish"><DropdownItem>我要发表</DropdownItem></router-link>
-                  <router-link to="/ "><DropdownItem divided>退出</DropdownItem></router-link>
+                  <div  @click="quit()"><DropdownItem divided>退出</DropdownItem></div>
                   <!-- <DropdownItem divided>帮助反馈</DropdownItem> -->
                 </DropdownMenu>
               </Dropdown>
@@ -122,6 +124,11 @@ export default {
         this.DrawerValue = false
         this.$router.push({ name: 'searchresult', query: { q: T } })
       }
+    },
+    quit () {
+      localStorage.removeItem('info')
+      this.$Message.success('退出')
+      this.$router.replace('/')
     }
   }
 }
@@ -180,6 +187,12 @@ export default {
       .user-login-info{
         .user-pc{
           display:none
+        }
+        .title-drawer-icon{
+          color:#333;
+          .person{
+            color:#333;            
+          }
         }
         @include desktop {
           .user-pc{

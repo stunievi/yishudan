@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/home/Home.vue'
 // import Shudan from './views/other/Shudan.vue'
 import HomeTitleView from './views/frameworks/HomeTitleView.vue'
-import HomeContentView from './views/frameworks/HomeContentView.vue'
 // import Login from './views/Login.vue'
 // import Loginstate from './views/Loginstate.vue'
 Vue.use(Router)
@@ -25,35 +24,33 @@ export default new Router({
       children: [
         {
           path: '/',
-          redirect: 'home',
-          component: HomeContentView,
-          // pc 用户首页子页面
-          children: [
-            {
-              path: 'home',
-              name: 'home',
-              component: Home
-            },
-            {
-              name: 'recommendationlist',
-              path: 'recommendationlist',
-              component: () => import('./views/home/RecommendationList.vue')
-              // redirect: {
-              //   name: 'recommendationlist'
-              // }
-            },
-            {
-              name: 'adv',
-              path: 'adv',
-              component: () => import('./views/home/Advertisement.vue')
-            },
-            {
-              name: 'downLoad_azw',
-              path: 'downLoad_azw/:cateId',
-              component: () => import('./views/home/DownLoadAZW.vue')
-            }
-          ]
+          redirect: 'home'
         },
+        {
+          path: 'home',
+          name: 'home',
+          component: Home
+        },
+        {
+          name: 'recommendationlist',
+          path: 'recommendationlist',
+          component: () => import('./views/home/RecommendationList.vue')
+          // redirect: {
+          //   name: 'recommendationlist'
+          // }
+        },
+        {
+          name: 'adv',
+          path: 'adv',
+          component: () => import('./views/home/Advertisement.vue')
+        },
+        {
+          name: 'downLoad_azw',
+          path: 'downLoad_azw/:cateId',
+          component: () => import('./views/home/DownLoadAZW.vue')
+        },
+        //   ]
+        // },
         {
           name: 'searchresult',
           path: 'searchresult',

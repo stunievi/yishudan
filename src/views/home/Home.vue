@@ -1,5 +1,5 @@
 <template>
-  <div class="content-width" >
+  <div class="container-width" >
     <div v-if="statu" >
       <BackTop></BackTop>
       <Row class="content">
@@ -152,7 +152,7 @@ export default {
 }
 </script>
 <style lang='scss'>
-.content-width{
+.container-width{
   width:100%;
   text-align: center;
   margin: 0 auto;

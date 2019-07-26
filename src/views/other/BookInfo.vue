@@ -62,14 +62,12 @@
 <script>
 import Config from '../../components/config'
 export default {
-  props: {
-    id: Intl
-  },
   data () {
     return {
       modal: false,
       statu: 0,
       value1: '',
+      id: this.$route.params.bookId,
       book_info: [],
       networkStatu: true,
       upload_model: false,

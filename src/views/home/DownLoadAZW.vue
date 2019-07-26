@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div v-else-if="!statu">
+    <div v-else-if="!statu"  style='display: flex;'>
       <!-- <span>网络错误</span> -->
       <Loading :type="networkStatu"/>
     </div>

@@ -53,7 +53,7 @@
         <p>资源来源于互联网，侵权请联系yishudan@mail.com,核实后将第一时间删除</p>
       </div>
     </div>
-    <div v-else-if="!statu">
+    <div v-else-if="!statu" style='display: flex;'>
       <!-- <span>网络错误</span> -->
       <Loading :type="networkStatu"/>
     </div>

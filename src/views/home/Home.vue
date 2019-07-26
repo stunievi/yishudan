@@ -112,7 +112,7 @@
       </Row>
       <Copy />
     </div>
-    <div v-else-if="!statu">
+    <div v-else-if="!statu" style='display: flex;'>
       <!-- <span>网络错误</span> -->
       <Loading :type="networkStatu"/>
     </div>
@@ -304,6 +304,7 @@ export default {
       }
       .hot-authors{
         width:100%;
+        margin-top: 10px;
         .hot-authors-title{
           width:100%;
           display: flex;

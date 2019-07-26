@@ -3,6 +3,7 @@
     	display: inline-block;
         width: 200px;
         height: 100px;
+        margin: auto;
         position: relative;
         .text{
            .console{

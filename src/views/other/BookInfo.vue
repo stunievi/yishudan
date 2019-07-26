@@ -92,7 +92,7 @@ export default {
     },
     download: function () {
       // console.log( Config.Download + '/downloadAZW?book_id=' + this.id)
-      window.location.href = Config.Url + '/downloadAZW?book_id=' + this.$route.params.bookId
+      window.location.href = Config.Download + '/downloadAZW?book_id=' + this.$route.params.bookId
     },
     uploadFile: function () {
       this.upload_model = 1
@@ -115,6 +115,7 @@ export default {
 <style lang="scss" >
 .content-width{
   width:100%;
+  margin: 0 auto;
   @include desktop{
     padding:15px;
     width:pxTorem(650px);

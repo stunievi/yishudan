@@ -129,6 +129,7 @@ export default {
 $color: red;
 .content-width{
   width:100%;
+  margin: 0 auto;
   @include desktop{
     padding:15px;
     width:pxTorem(650px);

@@ -105,6 +105,7 @@ export default {
     this.getData.getData('/api/showBookInfo', '?book_id=' + this.$route.params.bookId ).then(R => {
       this.statu = 1
       this.book_info = R[0]
+      document.title =  R[0].book_name + '--壹书单--azw3下载'
     }).catch(E => {
       this.statu = 0
       this.networkStatu = false

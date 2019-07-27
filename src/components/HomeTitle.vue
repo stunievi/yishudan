@@ -129,10 +129,10 @@ export default {
       
     }
   },
-  watch: {
-    // 监听路由参数发生变化，重新加载页面
-    "$route": "isActiveTrue"
-  },
+  // watch: {
+  //   // 监听路由参数发生变化，重新加载页面
+  //   "$route": "isActiveTrue"
+  // },
   methods: {
     ToUser () {
       // 检测用户是否登录

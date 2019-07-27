@@ -29,24 +29,36 @@ export default new Router({
         {
           path: 'home',
           name: 'home',
+          meta: {
+            title: '首页'
+          },
           component: Home
         },
         {
           name: 'recommendationlist',
           path: 'recommendationlist',
-          component: () => import('./views/home/RecommendationList.vue')
+          component: () => import('./views/home/RecommendationList.vue'),
           // redirect: {
           //   name: 'recommendationlist'
           // }
+          meta: {
+            title: '发现'
+          }
         },
         {
           name: 'adv',
           path: 'adv',
+          meta: {
+            title: '广告'
+          },
           component: () => import('./views/home/Advertisement.vue')
         },
         {
           name: 'downLoad_azw',
           path: 'downLoad_azw/:cateId',
+          meta: {
+            title: '下载'
+          },
           component: () => import('./views/home/DownLoadAZW.vue')
         },
         //   ]
@@ -82,12 +94,18 @@ export default new Router({
       // 登陆检查
       path: '/login',
       name: 'login',
+      meta: {
+        title: '登录'
+      },
       component: () => import('./views/user/Login.vue')
     },
     {
       // 登陆检查
       path: '/register',
       name: 'register',
+      meta: {
+        title: '注册'
+      },
       component: () => import('./views/user/Register.vue')
     },
     {
@@ -109,64 +127,41 @@ export default new Router({
             {
               path: 'userinfo',
               name: 'userinfo',
-              meta: { requiresAuth: true },
+              meta: {
+                requiresAuth: true,
+                titile: '个人信息'
+              },
               component: () => import('./views/user/UserInfo.vue')
             },
             {
               path: 'Collage',
               name: 'Collage',
-              meta: { requiresAuth: true },
+              meta: {
+                requiresAuth: true,
+                titile: '收藏'
+              },
               component: () => import('./views/user/Collage.vue')
             },
             {
               path: 'ArtiManage',
               name: 'ArtiManage',
-              meta: { requiresAuth: true },
+              meta: {
+                requiresAuth: true,
+                titile: '文章管理'
+              },
               component: () => import('./views/user/ArtiManage.vue')
             },
             {
               path: 'Publish',
               name: 'Publish',
-              meta: { requiresAuth: true },
+              meta: {
+                requiresAuth: true,
+                titile: '发表'
+              },
               component: () => import('./views/user/Publish.vue')
             }
           ]
         }
-        // {
-        //   // 登陆检查
-        //   path: 'center',
-        //   name: 'home',
-        //   component: () => import('./views/frameworks/UserTitleView.vue'),
-        //   children: [
-        //     {
-        //       path: '/',
-        //       component: () => import('./views/frameworks/UserContentView.vue'),
-        //       // 用户后台子页面
-        //       children: [
-        //         {
-        //           path: '/',
-        //           redirect: '/userinfo'
-        //         },
-        //         {
-        //           path: '/userinfo',
-        //           component: () => import('./views/user/UserInfo.vue')
-        //         },
-        //         {
-        //           path: '/Collage',
-        //           component: () => import('./views/user/Collage.vue')
-        //         },
-        //         {
-        //           path: '/ArtiManage',
-        //           component: () => import('./views/user/ArtiManage.vue')
-        //         },
-        //         {
-        //           path: '/Publish',
-        //           component: () => import('./views/user/Publish.vue')
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // }
       ]
     }
   ]

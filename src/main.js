@@ -25,6 +25,7 @@ Vue.component('Loading', Loading)
 // Vue.component('Message', Message)
 // Vue.component('Alert', Alert)
 Vue.use(iView)
+// Vue.use(VueWechatTitle)
 // fetch
 Vue.prototype.getData = getData
 Vue.config.productionTip = false
@@ -35,6 +36,11 @@ new Vue({
 }).$mount('#app')
 var isLogin = localStorage.getItem('info') == null ? 1 : 0
 router.beforeEach(function (to, from, next) {
+  // 更改首页标题
+  // console.log(to.  meta.title)
+  if (to.meta.title) {
+    document.title = to.meta.title + '--壹书单'
+  }
   if (to.matched.some(T => T.meta.requiresAuth)) {
     if (isLogin) {
       next('/login')
@@ -46,7 +52,12 @@ router.beforeEach(function (to, from, next) {
   }
 })
 router.onReady((to) => {
+  // console.log(to)
   if (to !== undefined) {
+    // 更改首页标题
+    if (to.meta.title) {
+      document.title = to.meta.title + '--壹书单'
+    }
     if (to.matched.some(T => T.meta.requiresAuth)) {
       // console.log('需要登录')
       if (isLogin) {

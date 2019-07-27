@@ -3,7 +3,7 @@
     <div v-if="statu" >
       <BackTop></BackTop>
       <Row class="content">
-        <Col :sm="24" :md="18" class-name="article">
+        <Col :sm="24" :md="17" :lg="18" class-name="article">
           <div class="banner">
             <Carousel class="banner-height"   arrow="always" autoplay loop >
               <CarouselItem v-for="list in datas.banner" :key='list.value'>
@@ -28,7 +28,7 @@
             </router-link>
           </div>
         </Col>
-        <Col :sm="0" :md="6" class-name="other">
+        <Col :sm="0" :md="7" :lg="6" class-name="other">
           <div class="hot-book">
             <div class="hot-book-title">
               <div>
@@ -64,7 +64,7 @@
                   <span>快写好了</span>
                 </div>
               </div>
-              <div class="hot-book-list-item">
+              <!-- <div class="hot-book-list-item">
                 <img src="http://5b0988e595225.cdn.sohucs.com/images/20180825/72e000529dfe4e9cb01d5739d2aa3b2f.jpeg" alt="">
                 <div>
                   <span>快写好了</span>
@@ -75,7 +75,7 @@
                 <div>
                   <span>快写好了</span>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="hot-authors">
@@ -292,6 +292,9 @@ export default {
           display: flex;
           justify-content: space-around;
           flex-wrap: wrap;
+          @include desktop{
+            justify-content: space-between;
+          }
           .hot-book-list-item{
             margin-top:5px;
             img{

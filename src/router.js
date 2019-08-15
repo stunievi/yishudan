@@ -129,7 +129,7 @@ export default new Router({
               name: 'userinfo',
               meta: {
                 requiresAuth: true,
-                titile: '个人信息'
+                title: '个人信息'
               },
               component: () => import('./views/user/UserInfo.vue')
             },
@@ -138,7 +138,7 @@ export default new Router({
               name: 'Collage',
               meta: {
                 requiresAuth: true,
-                titile: '收藏'
+                title: '收藏'
               },
               component: () => import('./views/user/Collage.vue')
             },
@@ -147,7 +147,7 @@ export default new Router({
               name: 'ArtiManage',
               meta: {
                 requiresAuth: true,
-                titile: '文章管理'
+                title: '文章管理'
               },
               component: () => import('./views/user/ArtiManage.vue')
             },
@@ -156,7 +156,7 @@ export default new Router({
               name: 'Publish',
               meta: {
                 requiresAuth: true,
-                titile: '发表'
+                title: '发表'
               },
               component: () => import('./views/user/Publish.vue')
             }

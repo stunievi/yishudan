@@ -143,7 +143,7 @@ export default {
         T.networkStatu = false
         // console.log(123,T)
       })
-    }
+    },
   },
   mounted: function () {
     // 待修改

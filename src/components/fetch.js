@@ -52,4 +52,5 @@ var getData = {
     })
   }
 }
+
 export default getData

@@ -37,9 +37,11 @@ new Vue({
 var isLogin = localStorage.getItem('info') == null ? 1 : 0
 router.beforeEach(function (to, from, next) {
   // 更改首页标题
-  // console.log(to.  meta.title)
+  // console.log(to.meta.title, 1)
   if (to.meta.title) {
-    document.title = to.meta.title + '--壹书单'
+    document.title = to.meta.title + '--壹书单|AZW3格式电子书免费下载'
+  } else {
+    document.title = '壹书单--书的海洋中为你导航|AZW3格式电子书免费下载'
   }
   if (to.matched.some(T => T.meta.requiresAuth)) {
     if (isLogin) {
@@ -56,7 +58,7 @@ router.onReady((to) => {
   if (to !== undefined) {
     // 更改首页标题
     if (to.meta.title) {
-      document.title = to.meta.title + '--壹书单'
+      document.title = to.meta.title + '--壹书单|AZW3格式电子书免费下载'
     }
     if (to.matched.some(T => T.meta.requiresAuth)) {
       // console.log('需要登录')
@@ -64,5 +66,7 @@ router.onReady((to) => {
         router.replace({ path: '/login' })
       }
     }
+  } else {
+    document.title = '壹书单--书的海洋中为你导航|AZW3格式电子书免费下载'
   }
 })

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>壹书单--书的海洋中为你导航</title>
+    <title>壹书单--书的海洋中为你导航|AZW3格式电子书免费下载</title>
     <meta name="keywords" content="壹书单,热门书单,书单,AZW3格式,AZW3下载,kindle,电子书,导航,书,读书">
     <meta name="description" content="壹书单--分享你的书单，热门书单献给爱读书的你，AZW3格式电子书免费下载">
     <style>
@@ -20,6 +20,43 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script type="text/javascript" src="//js.users.51.la/20201107.js"></script>
+    <script type="text/javascript" src="//js.users.51.la/20201107.js">
+    //   function getjson (page) {
+    //     console.log(page)
+    //     fetch('https://read.douban.com/j/kind/', {
+    //       headers: {
+    //         'content-type': 'application/json; charset=utf-8',
+    //         'Cache-Control': 'must-revalidate, no-cache, private',
+    //         'Host': 'read.douban.com',
+    //         'Origin':	'https://read.douban.com'
+    //       },
+    //       method: 'POST',
+    //       body: JSON.stringify({"sort":"hot","page":page,"kind":103,"query":"\n    query getFilterWorksList($works_ids: [ID!]) {\n      worksList(worksIds: $works_ids) {\n        \n    \n    title\n    cover\n    url\n    isBundle\n  \n    \n    url\n    title\n  \n    \n    author {\n      name\n      url\n    }\n    origAuthor {\n      name\n      url\n    }\n    translator {\n      name\n      url\n    }\n  \n    \n    abstract\n    editorHighlight\n  \n    \n    isOrigin\n    kinds {\n      \n    name @skip(if: true)\n    shortName @include(if: true)\n    id\n  \n    }\n    ... on WorksBase @include(if: true) {\n      wordCount\n      wordCountUnit\n    }\n    ... on WorksBase @include(if: true) {\n      \n    isEssay\n    \n    ... on EssayWorks {\n      favorCount\n    }\n  \n    \n    isNew\n    \n    averageRating\n    ratingCount\n    url\n  \n  \n  \n    }\n    ... on WorksBase @include(if: false) {\n      isColumn\n      isEssay\n      onSaleTime\n      ... on ColumnWorks {\n        updateTime\n      }\n    }\n    ... on WorksBase @include(if: true) {\n      isColumn\n      ... on ColumnWorks {\n        isFinished\n      }\n    }\n    ... on EssayWorks {\n      essayActivityData {\n        \n    title\n    uri\n    tag {\n      name\n      color\n      background\n      icon2x\n      icon3x\n      iconSize {\n        height\n      }\n      iconPosition {\n        x y\n      }\n    }\n  \n      }\n    }\n    highlightTags {\n      name\n    }\n  \n    ... on WorksBase @include(if: false) {\n      \n    fixedPrice\n    salesPrice\n    isRebate\n  \n    }\n    ... on EbookWorks {\n      \n    fixedPrice\n    salesPrice\n    isRebate\n  \n    }\n    ... on WorksBase @include(if: true) {\n      ... on EbookWorks {\n        id\n        isPurchased\n        isInWishlist\n      }\n    }\n  \n        id\n        isOrigin\n      }\n    }\n  ","variables":{}}),
+    //     }).then(R => {
+    //       R.json().then(T => {
+    //         savejson(T.list,page)
+    //       })
+    //     })
+    //   }
+    // function savejson (T,page)  {
+    //   fetch('http://127.0.0.1:8000/api/savejson', {
+    //     headers: {
+    //       'content-type': 'application/json; charset=utf-8',
+    //     },
+    //     method: 'POST',
+    //     body: JSON.stringify({info: T}),
+    //   }).then(R => {
+    //     page = page+1
+    //     if(page == 321){
+
+    //     }else{
+    //       setTimeout(function () {
+    //         console.log(page)
+    //         this.getjson(page)
+    //       },1000)
+    //     }
+    //   })
+    // }
+    </script>
   </body>
 </html>
